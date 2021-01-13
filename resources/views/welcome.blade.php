@@ -2,6 +2,9 @@
 
 @section('header')
     <header class="header header-inverse h-fullscreen pb-80" data-parallax="{{ asset('assets/img/CONCOURS_MUSIC_900_900px.jpg') }}" data-overlay="8">
+        <div class="row">
+
+        </div>
         <div class="container text-center">
 
             <div class="row h-full">
@@ -64,7 +67,7 @@
                             <h6>Règlement</h6>
                             <p>Cliquer ci-dessous pour consulter le règlement.</p>
                             <p>
-                                <a class="fw-600 fs-12" href="blog-single.html">Règlement <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
+                                <a class="fw-600 fs-12" href="{{ asset('uploads/pdf/REGLEMENT_JEU_MONTRE_TON_MOOV.VF.pdf') }}">Règlement <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
                             </p>
                             <p>
                                 <a class="btn btn-xs btn-round w-200 btn-secondary-outline mr-16" href="#" data-scrollto="section-formulaire">Inscrivez-vous</a>

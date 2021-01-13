@@ -42,6 +42,7 @@ return [
     'debug' => (bool) env('APP_DEBUG', false),
 
     'participants_files' => env('PARTICIPANTS_FILES_DIR', 'uploads/participants/files'),
+    'participants_pdfs_dir' => env('PARTICIPANTS_PDFS_DIR', 'uploads/pdf'),
 
     /*
     |--------------------------------------------------------------------------
