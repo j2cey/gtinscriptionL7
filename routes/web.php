@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ParticipantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::resource('participants',ParticipantController::class);
+Route::resource('participants','ParticipantController');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Participant;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
@@ -35,17 +35,6 @@ class ParticipantController extends Controller
      */
     public function store(Request $request)
     {
-        $formInput = $request->all();
-
-        $new_participant = Participant::create([
-            'nom' => $formInput['nom'],
-            'occupation' => $formInput['occupation'],
-            'email' => $formInput['email'],
-            'phone' => $formInput['phone'],
-        ]);
-
-        $fichier = $new_participant->verifyAndStoreImage($request, 'fichier', 'participants_files');
-        $new_participant->update(['fichier' => $fichier]);
 
         session()->flash('msg_success', 'Inscription effectuéé avec succès.');
         return redirect()->route('home');

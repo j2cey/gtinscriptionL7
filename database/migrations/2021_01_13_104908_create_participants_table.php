@@ -24,10 +24,12 @@ class CreateParticipantsTable extends Migration
             $table->baseFields();
 
             $table->string('nom')->nullable()->comment('nom du participant');
-            $table->string('occupation')->nullable()->comment('occupation du participant');
+            $table->string('nomgroupe')->nullable()->comment('nom de groupe du participant');
             $table->string('email')->nullable()->comment('adresse email du participant');
             $table->string('phone')->nullable()->comment('numero de phone du participant');
-            $table->string('fichier')->nullable()->comment('fichier du participant');
+            $table->string('fichierpieceidentite')->nullable()->comment('piece identite du participant');
+            $table->string('fichiervideo')->nullable()->comment('video du participant');
+            $table->string('complementinfos')->nullable()->comment('complement infos du participant');
         });
         $this->setTableComment($this->table_name,$this->table_comment);
     }

@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
-    <header class="header header-inverse h-fullscreen pb-80" data-parallax="{{ asset('assets/img/CONCOURS_MUSIC_900_900px.jpg') }}" data-overlay="8">
-        <div class="row">
+    <header class="header header-inverse h-fullscreen pb-80" style="background-image: url({{ asset('assets/img/CONCOURS_MUSIC_900_900px.jpg') }})" data-overlay="8">
 
-        </div>
         <div class="container text-center">
 
             <div class="row h-full">
@@ -23,7 +21,7 @@
                 </div>
 
                 <div class="col-12 align-self-end text-center">
-                    <a class="scroll-down-1 scroll-down-inverse" href="#" data-scrollto="section-reglement">
+                    <a class="scroll-down-2 scroll-down-inverse" href="#" data-scrollto="section-reglement">
                         <span></span>
                     </a>
                     <br><br>
@@ -123,7 +121,10 @@
                         <input type="hidden" name="subject" value="Request demo">
 
                         <div class="form-group">
-                            <input class="form-control" type="text" name="nom" placeholder="Nom">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon3"><i class="ti-user"></i></span>
+                                <input type="text" name="nom" class="form-control" placeholder="Nom" aria-describedby="basic-addon3">
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -131,7 +132,10 @@
                         </div>
 
                         <div class="form-group">
-                            <input class="form-control" type="email" name="email" placeholder="Adresse e-mail">
+                            <div class="input-group">
+                                <input type="text" name="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4">
+                                <span class="input-group-addon" id="basic-addon4"><i class="ti-email"></i></span>
+                            </div>
                         </div>
 
                         <div class="form-group">
