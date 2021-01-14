@@ -2089,6 +2089,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 //
 //
 //
@@ -2159,8 +2161,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+var Participant = function Participant(participant) {
+  _classCallCheck(this, Participant);
+
+  this.nom = participant.nom || '';
+  this.nomgroupe = participant.nomgroupe || '';
+  this.email = participant.email || '';
+  this.phone = participant.phone || '';
+  this.fichierpieceidentite = participant.fichierpieceidentite || '';
+  this.fichiervideo = participant.fichiervideo || '';
+  this.complementinfos = participant.complementinfos || '';
+  this.reglementvalide = participant.reglementvalide || '';
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ParticipantCreate"
+  name: "ParticipantCreate",
+  mounted: function mounted() {
+    this.editing = false;
+    this.participant = new Participant({});
+    this.participantForm = new Form(this.participant);
+  },
+  data: function data() {
+    return {
+      participant: {},
+      participantForm: new Form(new Participant({})),
+      participantId: null,
+      editing: false,
+      loading: false,
+      errors: []
+    };
+  },
+  methods: {
+    createParticipant: function createParticipant() {
+      var _this = this;
+
+      this.loading = true;
+      this.participantForm.post('/participants').then(function (newparticipant) {
+        _this.loading = false;
+      })["catch"](function (error) {
+        _this.loading = false;
+      });
+    }
+  },
+  computed: {
+    isValidCreateForm: function isValidCreateForm() {
+      return !this.loading;
+    }
+  }
 });
 
 /***/ }),
@@ -107654,8 +107708,298 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c(
+      "div",
+      { staticClass: "col-12 col-lg-5 align-self-center text-center" },
+      [
+        _c("h3", { staticClass: "heading-alt fw-300" }, [
+          _vm._v("Formulaire d'Inscription")
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Veuillez remplir correctement tous les champs de ce formulaire d’inscription et envoyer votre vidéo de participation après avoir lu entièrement  le règlement du jeu."
+          )
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "form-horizontal",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+              },
+              keydown: function($event) {
+                return _vm.participantForm.errors.clear()
+              }
+            }
+          },
+          [
+            _vm.participantForm.errors.length > 0
+              ? _c(
+                  "ul",
+                  { staticClass: "alert alert-danger" },
+                  _vm._l(_vm.errors, function(error) {
+                    return _c(
+                      "p",
+                      {
+                        key: _vm.errors.indexOf(error),
+                        staticClass: "text-center"
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(error) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-block",
+                attrs: { type: "button", disabled: !_vm.isValidCreateForm },
+                on: {
+                  click: function($event) {
+                    return _vm.createParticipant()
+                  }
+                }
+              },
+              [_vm._v("Valider")]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(8)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "input-group" }, [
+        _c(
+          "span",
+          { staticClass: "input-group-addon", attrs: { id: "basic-addon3" } },
+          [_c("i", { staticClass: "ti-user" })]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "nom",
+            placeholder: "Nom",
+            "aria-describedby": "basic-addon3"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "nomgroupe", placeholder: "Nom du Groupe" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "input-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "email",
+            placeholder: "Email address",
+            "aria-describedby": "basic-addon4"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          { staticClass: "input-group-addon", attrs: { id: "basic-addon4" } },
+          [_c("i", { staticClass: "ti-email" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "phone", placeholder: "Numéro Téléphone" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group input-group file-group" }, [
+      _c("input", {
+        staticClass: "form-control file-value",
+        attrs: {
+          type: "text",
+          placeholder: "Pièce d'identité...",
+          readonly: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "file",
+          name: "fichierpieceidentite",
+          id: "fichierpieceidentite",
+          multiple: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "input-group-btn" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-white file-browser",
+            attrs: { type: "button" }
+          },
+          [_c("i", { staticClass: "fa fa-upload" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group input-group file-group" }, [
+      _c("input", {
+        staticClass: "form-control file-value",
+        attrs: {
+          type: "text",
+          placeholder: "Chargez votre Vidéo...",
+          readonly: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "file",
+          name: "fichiervideo",
+          id: "fichiervideo",
+          multiple: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "input-group-btn" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-white file-browser",
+            attrs: { type: "button" }
+          },
+          [_c("i", { staticClass: "fa fa-upload" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: {
+          name: "complementinfos",
+          placeholder: "Complément information",
+          rows: "3"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "custom-control custom-checkbox" }, [
+        _c("input", {
+          staticClass: "custom-control-input",
+          attrs: { type: "checkbox", name: "reglementvalide" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "custom-control-indicator" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "custom-control-description" }, [
+          _vm._v("Règlement Lu et Approuvé ?")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-12 offset-lg-1 col-lg-6 p-90 hidden-md-down" },
+      [
+        _c("img", {
+          attrs: {
+            src: "assets/img/Logo_Moov_Africa_Fond_Blanc.png",
+            alt: "...",
+            "data-aos": "fade-up"
+          }
+        })
+      ]
+    )
+  }
+]
+render._withStripped = true
 
 
 
@@ -128197,19 +128541,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css");
-/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue2-datepicker/locale/fr */ "./node_modules/vue2-datepicker/locale/fr.js");
-/* harmony import */ var vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! jquery-ui-dist/jquery-ui */ "./node_modules/jquery-ui-dist/jquery-ui.js");
-/* harmony import */ var jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _utilities_Form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utilities/Form */ "./resources/js/utilities/Form.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css");
+/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
+/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
+/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue2-datepicker/locale/fr */ "./node_modules/vue2-datepicker/locale/fr.js");
+/* harmony import */ var vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_locale_fr__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! jquery-ui-dist/jquery-ui */ "./node_modules/jquery-ui-dist/jquery-ui.js");
+/* harmony import */ var jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_dist_jquery_ui__WEBPACK_IMPORTED_MODULE_11__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -128244,15 +128589,15 @@ window.handleErrors = function (error) {
     message: 'Quelque chose a mal tourné. Veuillez rafraîchir la page.',
     type: 'danger'
   });
-}; //import Form from "./utilities/Form";
-//window.Form = Form;
-//import router from './routes';
+};
 
+
+window.Form = _utilities_Form__WEBPACK_IMPORTED_MODULE_4__["default"]; //import router from './routes';
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('formatDate', function (value) {
   if (value) {
-    return moment__WEBPACK_IMPORTED_MODULE_4___default()(String(value)).format('DD/MM/YYYY hh:mm');
+    return moment__WEBPACK_IMPORTED_MODULE_5___default()(String(value)).format('DD/MM/YYYY hh:mm');
   }
 });
 
@@ -128299,7 +128644,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter("formatNumber", function (valu
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('vue-noty', __webpack_require__(/*! ./components/Noty.vue */ "./resources/js/components/Noty.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('vue-login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('VueCtkDateTimePicker', vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_5___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('VueCtkDateTimePicker', vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('vue2-datepicker', __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('times-circle', __webpack_require__(/*! ./components/Icons/TimesCircle */ "./resources/js/components/Icons/TimesCircle.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('select-angle', __webpack_require__(/*! ./components/Form/SelectAngle */ "./resources/js/components/Form/SelectAngle.vue")["default"]);
@@ -129388,6 +129733,338 @@ var getters = {
     };
   }
 };
+
+/***/ }),
+
+/***/ "./resources/js/utilities/Errors.js":
+/*!******************************************!*\
+  !*** ./resources/js/utilities/Errors.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Errors = /*#__PURE__*/function () {
+  /**
+   * Create a new Errors instance.
+   */
+  function Errors() {
+    _classCallCheck(this, Errors);
+
+    this.errors = {};
+  }
+  /**
+   * Determine if an errors exists for the given field.
+   *
+   * @param {string} field
+   */
+
+
+  _createClass(Errors, [{
+    key: "has",
+    value: function has(field) {
+      return this.errors.hasOwnProperty(field);
+    }
+    /**
+     * Determine if we have any errors.
+     */
+
+  }, {
+    key: "any",
+    value: function any() {
+      return Object.keys(this.errors).length > 0;
+    }
+    /**
+     * Retrieve the error message for a field.
+     *
+     * @param {string} field
+     */
+
+  }, {
+    key: "get",
+    value: function get(field) {
+      if (this.errors[field]) {
+        return this.errors[field][0];
+      }
+    }
+    /**
+     * Record the new errors.
+     *
+     * @param {object} errors
+     */
+
+  }, {
+    key: "record",
+    value: function record(errors) {
+      this.errors = errors;
+    }
+    /**
+     * Clear one or all error fields.
+     *
+     * @param {string|null} field
+     */
+
+  }, {
+    key: "clear",
+    value: function clear(field) {
+      if (field) {
+        delete this.errors[field];
+        return;
+      }
+
+      this.errors = {};
+    }
+  }]);
+
+  return Errors;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Errors);
+
+/***/ }),
+
+/***/ "./resources/js/utilities/Form.js":
+/*!****************************************!*\
+  !*** ./resources/js/utilities/Form.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Errors */ "./resources/js/utilities/Errors.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Form = /*#__PURE__*/function () {
+  /**
+   * Create a new Form instance.
+   *
+   * @param {object} data
+   */
+  function Form(data) {
+    _classCallCheck(this, Form);
+
+    this.originalData = data;
+
+    for (var field in data) {
+      this[field] = data[field];
+    }
+
+    this.errors = new _Errors__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  }
+  /**
+   * Fetch all relevant data for the form.
+   */
+
+
+  _createClass(Form, [{
+    key: "data",
+    value: function data() {
+      var data = {};
+
+      for (var property in this.originalData) {
+        data[property] = this[property];
+      }
+
+      return data;
+    }
+  }, {
+    key: "append",
+    value: function append(field, val) {
+      //formData.append('file', this.file);
+      this.data[field] = val;
+    }
+    /**
+     * Reset the form fields.
+     */
+
+  }, {
+    key: "reset",
+    value: function reset() {
+      for (var field in this.originalData) {
+        this[field] = '';
+      }
+
+      this.errors.clear();
+    }
+    /**
+     * Send a POST request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "post",
+    value: function post(url, fd) {
+      return this.submit('post', url, fd);
+    }
+    /**
+     * Send a PUT request to the given URL.
+     * .
+     * @param {string} url
+     * @param fd
+     */
+
+  }, {
+    key: "put",
+    value: function put(url, fd) {
+      return this.submit('put', url, fd);
+    }
+    /**
+     * Send a PATCH request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "patch",
+    value: function patch(url) {
+      return this.submit('patch', url);
+    }
+    /**
+     * Send a DELETE request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "delete",
+    value: function _delete(url) {
+      return this.submit('delete', url);
+    }
+    /**
+     * Submit the form.
+     *
+     * @param {string} requestType
+     * @param {string} url
+     * @param fd
+     */
+
+  }, {
+    key: "submit",
+    value: function submit(requestType, url, fd) {
+      var _this = this;
+
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+
+      if (requestType === 'put') {
+        if (typeof fd === 'undefined') {
+          fd = new FormData();
+        }
+
+        for (var property in this.originalData) {
+          if (property == null) {//
+          } else if (_typeof(this[property]) === 'object' && this[property] !== null) {
+            fd.append(property, JSON.stringify(this[property]));
+          } else if (this[property] === undefined || this[property] === null || this[property] === "null") {//fd.append(property, null);
+          } else if (this[property] === "true" || this[property] === true) {
+            fd.append(property, true);
+          } else if (this[property] === "false" || this[property] === false) {//fd.append(property, false);
+          } else {
+            fd.append(property, this[property]);
+          } //console.log(property, this[property]);
+
+        } //console.log('fd appended for put request', fd);
+
+
+        fd.append("_method", "PATCH"); //console.log('fd method PATCH added', fd);
+
+        return new Promise(function (resolve, reject) {
+          axios.post(url, fd).then(function (response) {
+            _this.onSuccess(response.data);
+
+            resolve(response.data);
+          })["catch"](function (error) {
+            _this.onFail(error.response.data.errors);
+
+            reject(error.response.data.errors);
+          });
+        });
+        /*return new Promise((resolve, reject) => {
+            axios.fetch(url, {
+                method: 'PATCH',
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                body: fd
+            })
+                .then(response => {
+                    this.onSuccess(response.data);
+                     resolve(response.data);
+                })
+                .catch(error => {
+                    this.onFail(error.response.data.errors);
+                     reject(error.response.data.errors);
+                });
+        });*/
+      } else {
+        if (typeof fd !== 'undefined') {
+          //console.log('fd is not undefined', fd);
+          for (var _property in this.originalData) {
+            fd.append(_property, this[_property]); //console.log(property, this[property]);
+          }
+        } else {
+          //console.log('fd is undefined', fd)
+          fd = this.data();
+        }
+
+        return new Promise(function (resolve, reject) {
+          axios[requestType](url, fd).then(function (response) {
+            _this.onSuccess(response.data);
+
+            resolve(response.data);
+          })["catch"](function (error) {
+            _this.onFail(error.response.data.errors);
+
+            reject(error.response.data.errors);
+          });
+        });
+      }
+    }
+    /**
+     * Handle a successful form submission.
+     *
+     * @param {object} data
+     */
+
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(data) {
+      this.reset();
+    }
+    /**
+     * Handle a failed form submission.
+     *
+     * @param {object} errors
+     */
+
+  }, {
+    key: "onFail",
+    value: function onFail(errors) {
+      this.errors.record(errors);
+    }
+  }]);
+
+  return Form;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Form);
 
 /***/ }),
 
