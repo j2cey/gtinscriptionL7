@@ -36,8 +36,10 @@ class ParticipantController extends Controller
      */
     public function store(CreateParticipantRequest $request)
     {
-        //dd($request);
+
         $formInput = $request->all();
+
+        dd($formInput, $request);
 
         $new_participant = Participant::create([
             'nom' => $formInput['nom'],
@@ -53,8 +55,8 @@ class ParticipantController extends Controller
 
         $new_participant->verifyAndStoreFile($request, 'fichierpieceidentite', 'fichierpieceidentite', 'participants_fichiersidentite_dir');
 
-        session()->flash('msg_success', 'Inscription effectuéé avec succès.');
-        return redirect()->route('home');
+        //session()->flash('msg_success', 'Inscription effectuéé avec succès.');
+        return $new_participant;
     }
 
     /**

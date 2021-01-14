@@ -7,21 +7,18 @@
             <br>
 
             <form class="form-horizontal" @submit.prevent @keydown="participantForm.errors.clear()">
-                <ul class="alert alert-danger" v-if="participantForm.errors.length > 0">
-                    <p class="text-center" v-for="error in errors" :key="errors.indexOf(error)">
-                        {{ error }}
-                    </p>
-                </ul>
 
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon3"><i class="ti-user"></i></span>
                         <input type="text" name="nom" class="form-control" placeholder="Nom" aria-describedby="basic-addon3">
                     </div>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('nom')" v-text="participantForm.errors.get('nom')"></small></p>
                 </div>
 
                 <div class="form-group">
                     <input class="form-control" type="text" name="nomgroupe" placeholder="Nom du Groupe">
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('nomgroupe')" v-text="participantForm.errors.get('nomgroupe')"></small></p>
                 </div>
 
                 <div class="form-group">
@@ -29,30 +26,35 @@
                         <input type="text" name="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4">
                         <span class="input-group-addon" id="basic-addon4"><i class="ti-email"></i></span>
                     </div>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('email')" v-text="participantForm.errors.get('email')"></small></p>
                 </div>
 
                 <div class="form-group">
                     <input class="form-control" type="text" name="phone" placeholder="Numéro Téléphone">
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('phone')" v-text="participantForm.errors.get('phone')"></small></p>
                 </div>
 
                 <div class="form-group input-group file-group">
                     <input type="text" class="form-control file-value" placeholder="Pièce d'identité..." readonly>
                     <input type="file" name="fichierpieceidentite" id="fichierpieceidentite" multiple>
                     <span class="input-group-btn">
-                                <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
-                            </span>
+                        <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
+                    </span>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('fichierpieceidentite')" v-text="participantForm.errors.get('fichierpieceidentite')"></small></p>
                 </div>
 
                 <div class="form-group input-group file-group">
                     <input type="text" class="form-control file-value" placeholder="Chargez votre Vidéo..." readonly>
                     <input type="file" name="fichiervideo" id="fichiervideo" multiple>
                     <span class="input-group-btn">
-                                <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
-                            </span>
+                        <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
+                    </span>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('fichiervideo')" v-text="participantForm.errors.get('fichiervideo')"></small></p>
                 </div>
 
                 <div class="form-group">
                     <textarea class="form-control" name="complementinfos" placeholder="Complément information" rows="3"></textarea>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('complementinfos')" v-text="participantForm.errors.get('complementinfos')"></small></p>
                 </div>
 
                 <div class="form-group">
@@ -61,6 +63,7 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Règlement Lu et Approuvé ?</span>
                     </label>
+                    <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('reglementvalide')" v-text="participantForm.errors.get('reglementvalide')"></small></p>
                 </div>
 
                 <button class="btn btn-primary btn-block" type="button" @click="createParticipant()" :disabled="!isValidCreateForm">Valider</button>
@@ -114,7 +117,13 @@
                     .post('/participants')
                     .then(newparticipant => {
                         this.loading = false
+                        window.noty({
+                            message: 'Votre participation a été bien enregistrée. Merci et restez dans la MOOV',
+                            type: 'success'
+                        })
+
                     }).catch(error => {
+                    console.log(error)
                     this.loading = false
                 });
             }

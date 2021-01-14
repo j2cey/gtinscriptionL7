@@ -42,7 +42,7 @@
         <div class="container">
 
             <header class="section-header">
-                <h2>Détail sur le jeu concours</h2>
+                <h2>Détails sur le jeu concours</h2>
                 <p>Le jeu concours Montre ton Moov consiste en l’exécution d’une prestation artistique dans des domaines variés, en groupe ou en individuel mettant en valeur la diversité de la culture africaine.</p>
             </header>
 
@@ -80,12 +80,19 @@
                 <div class="col-12 col-md-8 feature-2">
                     <p class="feature-icon"><i class="icon-tools"></i></p>
                     <h6>Sélection des Gagnants</h6>
-                    <ul class="contacts-list-status">
-                        <li>Analyse et pré-sélection des vidéos par un membre du jury composé d’un artiste, de l’agence digitale et d’un huissier de justice.</li>
-                        <li>Mise en ligne sur la page Facebook des 10 meilleures vidéos présélectionnées suivant les critères d’originalité de la prestation et de la maîtrise du domaine.</li>
-                        <li>Vote des internautes sur la page Facebook des meilleures vidéos parmi celles short listées par les membres du jury.</li>
-                        <li>Classement des 3 meilleures prestations en fonction du nombre cumulé d’interactions (likes, commentaires et partages) suscitées pendant une période de 1 semaine. Le premier de  la liste étant de facto qualifié à la finale</li>
-                    </ul>
+                    <p>
+                        <i class="ti-check text-success mr-8"></i>
+                        <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé d’un artiste, de l’agence digitale et d’un huissier de justice.</span>
+                        <br>
+                        <i class="ti-check text-success mr-8"></i>
+                        <span class="fs-14">Mise en ligne sur la page Facebook des 10 meilleures vidéos présélectionnées suivant les critères d’originalité de la prestation et de la maîtrise du domaine.</span>
+                        <br>
+                        <i class="ti-check text-success mr-8"></i>
+                        <span class="fs-14">Vote des internautes sur la page Facebook des meilleures vidéos parmi celles short listées par les membres du jury.</span>
+                        <br>
+                        <i class="ti-check text-success mr-8"></i>
+                        <span class="fs-14">Classement des 3 meilleures prestations en fonction du nombre cumulé d’interactions (likes, commentaires et partages) suscitées pendant une période de 1 semaine. Le premier de  la liste étant de facto qualifié à la finale.</span>
+                    </p>
                 </div>
 
                 <div class="col-12 col-md-4 feature-2">

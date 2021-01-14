@@ -2168,6 +2168,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
 var Participant = function Participant(participant) {
   _classCallCheck(this, Participant);
 
@@ -2205,7 +2208,12 @@ var Participant = function Participant(participant) {
       this.loading = true;
       this.participantForm.post('/participants').then(function (newparticipant) {
         _this.loading = false;
+        window.noty({
+          message: 'Votre participation a été bien enregistrée. Merci et restez dans la MOOV',
+          type: 'success'
+        });
       })["catch"](function (error) {
+        console.log(error);
         _this.loading = false;
       });
     }
@@ -107744,45 +107752,206 @@ var render = function() {
             }
           },
           [
-            _vm.participantForm.errors.length > 0
-              ? _c(
-                  "ul",
-                  { staticClass: "alert alert-danger" },
-                  _vm._l(_vm.errors, function(error) {
-                    return _c(
-                      "p",
-                      {
-                        key: _vm.errors.indexOf(error),
-                        staticClass: "text-center"
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(error) +
-                            "\n                "
+            _c("div", { staticClass: "form-group" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("nom")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("nom")
                         )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              : _vm._e(),
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "nomgroupe",
+                  placeholder: "Nom du Groupe"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("nomgroupe")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("nomgroupe")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "form-group" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("email")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("email")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "phone",
+                  placeholder: "Numéro Téléphone"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("phone")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("phone")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(3),
+            _c("div", { staticClass: "form-group input-group file-group" }, [
+              _c("input", {
+                staticClass: "form-control file-value",
+                attrs: {
+                  type: "text",
+                  placeholder: "Pièce d'identité...",
+                  readonly: ""
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "file",
+                  name: "fichierpieceidentite",
+                  id: "fichierpieceidentite",
+                  multiple: ""
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("fichierpieceidentite")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("fichierpieceidentite")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(4),
+            _c("div", { staticClass: "form-group input-group file-group" }, [
+              _c("input", {
+                staticClass: "form-control file-value",
+                attrs: {
+                  type: "text",
+                  placeholder: "Chargez votre Vidéo...",
+                  readonly: ""
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "file",
+                  name: "fichiervideo",
+                  id: "fichiervideo",
+                  multiple: ""
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("fichiervideo")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("fichiervideo")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(5),
+            _c("div", { staticClass: "form-group" }, [
+              _c("textarea", {
+                staticClass: "form-control",
+                attrs: {
+                  name: "complementinfos",
+                  placeholder: "Complément information",
+                  rows: "3"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("complementinfos")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("complementinfos")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(6),
-            _vm._v(" "),
-            _vm._m(7),
+            _c("div", { staticClass: "form-group" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm-left" }, [
+                _vm.participantForm.errors.has("reglementvalide")
+                  ? _c("small", {
+                      staticClass: "text text-danger",
+                      attrs: { role: "alert" },
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.participantForm.errors.get("reglementvalide")
+                        )
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "button",
@@ -107802,7 +107971,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(8)
+    _vm._m(5)
   ])
 }
 var staticRenderFns = [
@@ -107810,153 +107979,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c(
-          "span",
-          { staticClass: "input-group-addon", attrs: { id: "basic-addon3" } },
-          [_c("i", { staticClass: "ti-user" })]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "nom",
-            placeholder: "Nom",
-            "aria-describedby": "basic-addon3"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
+    return _c("div", { staticClass: "input-group" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-addon", attrs: { id: "basic-addon3" } },
+        [_c("i", { staticClass: "ti-user" })]
+      ),
+      _vm._v(" "),
       _c("input", {
         staticClass: "form-control",
-        attrs: { type: "text", name: "nomgroupe", placeholder: "Nom du Groupe" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "email",
-            placeholder: "Email address",
-            "aria-describedby": "basic-addon4"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          { staticClass: "input-group-addon", attrs: { id: "basic-addon4" } },
-          [_c("i", { staticClass: "ti-email" })]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "phone", placeholder: "Numéro Téléphone" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group input-group file-group" }, [
-      _c("input", {
-        staticClass: "form-control file-value",
         attrs: {
           type: "text",
-          placeholder: "Pièce d'identité...",
-          readonly: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "file",
-          name: "fichierpieceidentite",
-          id: "fichierpieceidentite",
-          multiple: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "input-group-btn" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-white file-browser",
-            attrs: { type: "button" }
-          },
-          [_c("i", { staticClass: "fa fa-upload" })]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group input-group file-group" }, [
-      _c("input", {
-        staticClass: "form-control file-value",
-        attrs: {
-          type: "text",
-          placeholder: "Chargez votre Vidéo...",
-          readonly: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "file",
-          name: "fichiervideo",
-          id: "fichiervideo",
-          multiple: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "input-group-btn" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-white file-browser",
-            attrs: { type: "button" }
-          },
-          [_c("i", { staticClass: "fa fa-upload" })]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          name: "complementinfos",
-          placeholder: "Complément information",
-          rows: "3"
+          name: "nom",
+          placeholder: "Nom",
+          "aria-describedby": "basic-addon3"
         }
       })
     ])
@@ -107965,18 +108001,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "custom-control custom-checkbox" }, [
-        _c("input", {
-          staticClass: "custom-control-input",
-          attrs: { type: "checkbox", name: "reglementvalide" }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "custom-control-indicator" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "custom-control-description" }, [
-          _vm._v("Règlement Lu et Approuvé ?")
-        ])
+    return _c("div", { staticClass: "input-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "email",
+          placeholder: "Email address",
+          "aria-describedby": "basic-addon4"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        { staticClass: "input-group-addon", attrs: { id: "basic-addon4" } },
+        [_c("i", { staticClass: "ti-email" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-white file-browser",
+          attrs: { type: "button" }
+        },
+        [_c("i", { staticClass: "fa fa-upload" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-white file-browser",
+          attrs: { type: "button" }
+        },
+        [_c("i", { staticClass: "fa fa-upload" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "custom-control custom-checkbox" }, [
+      _c("input", {
+        staticClass: "custom-control-input",
+        attrs: { type: "checkbox", name: "reglementvalide" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "custom-control-indicator" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "custom-control-description" }, [
+        _vm._v("Règlement Lu et Approuvé ?")
       ])
     ])
   },
