@@ -41,7 +41,8 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    'participants_files' => env('PARTICIPANTS_FILES_DIR', 'uploads/participants/files'),
+    'participants_fichiersvideo_dir' => env('PARTICIPANTS_FILES_DIR', 'uploads/participants/fichiersvideo'),
+    'participants_fichiersidentite_dir' => env('PARTICIPANTS_FICHIERSIDENTITE_DIR', 'uploads/participants/fichiersidentite'),
     'participants_pdfs_dir' => env('PARTICIPANTS_PDFS_DIR', 'uploads/pdf'),
 
     /*

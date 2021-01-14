@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Carbon;
-use App\Traits\Image\HasImageFile;
+use App\Traits\File\HasFile;
 
 /**
  * Class Participant
@@ -22,20 +22,21 @@ use App\Traits\Image\HasImageFile;
  * @property string $fichierpieceidentite
  * @property string $fichiervideo
  * @property string $complementinfos
+ * @property boolean $reglementvalide
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
 class Participant extends BaseModel
 {
-    use HasImageFile;
+    use HasFile;
     protected $guarded = [];
 
     #region Validation Rules
 
     public static function defaultRules() {
         return [
-
+            'nom' => ['required']
         ];
     }
     public static function createRules() {

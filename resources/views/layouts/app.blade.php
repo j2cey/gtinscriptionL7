@@ -31,9 +31,7 @@
 
       <div class="topbar-left">
         <button class="topbar-toggler">&#9776;</button>
-        <a class="topbar-brand" href="/" style="color: white;">
           Moov-Africa Gabon Telecom
-        </a>
       </div>
 
 
@@ -42,10 +40,15 @@
             <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
             @auth
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile', auth()->user()->username) }}">Salut <strong>{{ auth()->user()->name  }}</strong></a></li>
-
+                <a class="nav-link" href="#">Salut <strong>{{ auth()->user()->name  }}</strong> <i class="fa fa-caret-down"></i> </a>
+                  <div class="nav-submenu">
+                      <a class="d-block" href="javascript:{}" onclick="document.getElementById('logout-form').submit();">Déconnexion</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      </form>
+                  </div>
               </li>
-              <li class="nav-item"><a href="{{ route('cours.index') }}" class="nav-link">Tous les Cours</a></li>
+              <li class="nav-item"><a href="{{ route('participants.index') }}" class="nav-link">Participants</a></li>
             @endauth
 
             @guest

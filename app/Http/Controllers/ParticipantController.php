@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use App\Http\Requests\Participant\CreateParticipantRequest;
 
 class ParticipantController extends Controller
 {
@@ -33,8 +34,24 @@ class ParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateParticipantRequest $request)
     {
+        //dd($request);
+        $formInput = $request->all();
+
+        $new_participant = Participant::create([
+            'nom' => $formInput['nom'],
+            'nomgroupe' => $formInput['nomgroupe'],
+            'email' => $formInput['email'],
+            'phone' => $formInput['phone'],
+            'complementinfos' => $formInput['complementinfos'],
+            'reglementvalide' => $request->getCheckValue('reglementvalide'),
+        ]);
+
+        // verifyAndStoreFile( Request $request, $fieldname_rqst, $fieldname_db, $directory = 'unknown', $oldimage = ' ' )
+        $new_participant->verifyAndStoreFile($request, 'fichiervideo', 'fichiervideo', 'participants_fichiersvideo_dir');
+
+        $new_participant->verifyAndStoreFile($request, 'fichierpieceidentite', 'fichierpieceidentite', 'participants_fichiersidentite_dir');
 
         session()->flash('msg_success', 'Inscription effectuéé avec succès.');
         return redirect()->route('home');

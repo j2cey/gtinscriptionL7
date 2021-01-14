@@ -30,6 +30,7 @@ class CreateParticipantsTable extends Migration
             $table->string('fichierpieceidentite')->nullable()->comment('piece identite du participant');
             $table->string('fichiervideo')->nullable()->comment('video du participant');
             $table->string('complementinfos')->nullable()->comment('complement infos du participant');
+            $table->boolean('reglementvalide')->default(false)->comment('complement infos du participant');
         });
         $this->setTableComment($this->table_name,$this->table_comment);
     }

@@ -18,3 +18,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('participants','ParticipantController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/product', 'ProductController@index')->name('product');
+Route::get('/product/fetch', 'ProductController@fetch')->name('product.fetch');
+Route::get('/product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
+Route::get('/product/{product_id}/destroy', 'ProductController@destroy')->name('product.destroy');
