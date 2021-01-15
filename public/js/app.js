@@ -108141,7 +108141,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "custom-control-description" }, [
                   _vm._v(
-                    "Je reconnais avoir pris connaissance du règlement du jeu Moov Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription."
+                    "Je reconnais avoir pris connaissance du règlement du jeu Montre Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription."
                   )
                 ])
               ]),

@@ -61,7 +61,7 @@
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" name="reglementvalide" class="custom-control-input" v-model="participantForm.reglementvalide">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Je reconnais avoir pris connaissance du règlement du jeu Moov Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription.</span>
+                        <span class="custom-control-description">Je reconnais avoir pris connaissance du règlement du jeu Montre Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription.</span>
                     </label>
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('reglementvalide')" v-text="participantForm.errors.get('reglementvalide')"></small></p>
                 </div>
