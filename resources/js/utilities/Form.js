@@ -51,6 +51,7 @@ class Form {
      * Send a POST request to the given URL.
      * .
      * @param {string} url
+     * @param fd
      */
     post(url, fd) {
         return this.submit('post', url, fd);

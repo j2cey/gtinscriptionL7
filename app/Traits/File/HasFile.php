@@ -39,9 +39,13 @@ trait HasFile
             // Move image to folder
             $file->move($file_dir, $file_name);
 
-            $this->update([$fieldname_db => $file_name]);
+            $this->update([
+                $fieldname_db => $file_name,
+                $fieldname_db . '_size' => $file->getSize(),
+                $fieldname_db . '_type' => $file->getClientOriginalExtension(),
+            ]);
 
-            return 1;
+            return $file_name;
         }
 
         return -1;

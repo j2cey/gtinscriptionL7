@@ -11,32 +11,32 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon3"><i class="ti-user"></i></span>
-                        <input type="text" name="nom" class="form-control" placeholder="Nom" aria-describedby="basic-addon3">
+                        <input type="text" name="nom" class="form-control" placeholder="Nom" aria-describedby="basic-addon3" v-model="participantForm.nom">
                     </div>
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('nom')" v-text="participantForm.errors.get('nom')"></small></p>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="text" name="nomgroupe" placeholder="Nom du Groupe">
+                    <input class="form-control" type="text" name="nomgroupe" placeholder="Nom du Groupe" v-model="participantForm.nomgroupe">
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('nomgroupe')" v-text="participantForm.errors.get('nomgroupe')"></small></p>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" name="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4">
+                        <input type="text" name="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4" v-model="participantForm.email">
                         <span class="input-group-addon" id="basic-addon4"><i class="ti-email"></i></span>
                     </div>
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('email')" v-text="participantForm.errors.get('email')"></small></p>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="text" name="phone" placeholder="Numéro Téléphone">
+                    <input class="form-control" type="text" name="phone" placeholder="Numéro Téléphone" v-model="participantForm.phone">
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('phone')" v-text="participantForm.errors.get('phone')"></small></p>
                 </div>
 
                 <div class="form-group input-group file-group">
-                    <input type="text" class="form-control file-value" placeholder="Pièce d'identité..." readonly>
-                    <input type="file" name="fichierpieceidentite" id="fichierpieceidentite" multiple>
+                    <input type="text" class="form-control file-value" placeholder="Chargez votre fichier Identité..." readonly>
+                    <input type="file" name="fichierpieceidentite" id="fichierpieceidentite" ref="fichierpieceidentite" @change="handleIdentiteFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
                     </span>
@@ -45,7 +45,7 @@
 
                 <div class="form-group input-group file-group">
                     <input type="text" class="form-control file-value" placeholder="Chargez votre Vidéo..." readonly>
-                    <input type="file" name="fichiervideo" id="fichiervideo" multiple>
+                    <input type="file" name="fichiervideo" id="fichiervideo" ref="fichiervideo" @change="handleVideoFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
                     </span>
@@ -53,15 +53,15 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" name="complementinfos" placeholder="Complément information" rows="3"></textarea>
+                    <textarea class="form-control" name="complementinfos" placeholder="Complément information" rows="3" v-model="participantForm.complementinfos"></textarea>
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('complementinfos')" v-text="participantForm.errors.get('complementinfos')"></small></p>
                 </div>
 
                 <div class="form-group">
                     <label class="custom-control custom-checkbox">
-                        <input type="checkbox" name="reglementvalide" class="custom-control-input">
+                        <input type="checkbox" name="reglementvalide" class="custom-control-input" v-model="participantForm.reglementvalide">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Règlement Lu et Approuvé ?</span>
+                        <span class="custom-control-description">Je reconnais avoir pris connaissance du règlement du jeu Moov Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription.</span>
                     </label>
                     <p class="text-sm-left"><small class="text text-danger" role="alert" v-if="participantForm.errors.has('reglementvalide')" v-text="participantForm.errors.get('reglementvalide')"></small></p>
                 </div>
@@ -106,26 +106,55 @@
                 participantId: null,
                 editing: false,
                 loading: false,
-                errors: []
+                errors: [],
+                selectedVideoFile : null,
+                selectedVideoFileName : "Selectionnez votre fichier identité...",
+                selectedIdentiteFile : null,
+                selectedIdentiteFileName : "Selectionnez votre fichier video...",
             }
         },
         methods: {
+            handleIdentiteFileUpload(event) {
+                this.selectedIdentiteFile = event.target.files[0];
+                this.selectedIdentiteFileName = (typeof this.selectedIdentiteFile !== 'undefined') ? this.selectedIdentiteFile.name : 'Selectionnez votre fichier identité...';
+            },
+            handleVideoFileUpload(event) {
+                this.selectedVideoFile = event.target.files[0];
+                this.selectedVideoFileName = (typeof this.selectedVideoFile !== 'undefined') ? this.selectedVideoFile.name : 'Selectionnez votre fichier video...';
+            },
             createParticipant() {
                 this.loading = true
 
+                const fd = new FormData();
+                fd.append('fichierpieceidentite', this.selectedIdentiteFile);
+                fd.append('fichiervideo', this.selectedVideoFile);
+
                 this.participantForm
-                    .post('/participants')
+                    .post('/participants', fd)
                     .then(newparticipant => {
                         this.loading = false
                         window.noty({
-                            message: 'Votre participation a été bien enregistrée. Merci et restez dans la MOOV',
+                            message: 'Votre inscription a été enregistrée, merci pour votre participation !',
                             type: 'success'
                         })
+                        this.resetForm();
 
                     }).catch(error => {
-                    console.log(error)
                     this.loading = false
                 });
+            },
+            resetForm() {
+                //this.participantForm.nom = ''
+                //this.participantForm.nomgroupe = ''
+                //this.participantForm.email = ''
+                //this.participantForm.phone = ''
+                //this.participantForm.fichierpieceidentite = ''
+                //this.participantForm.fichiervideo = ''
+                //this.participantForm.complementinfos = ''
+                //this.participantForm.reglementvalide = ''
+                this.participantForm.reset();
+                this.$refs.fichierpieceidentite.value = '';
+                this.$refs.fichiervideo.value = '';
             }
         },
         computed: {

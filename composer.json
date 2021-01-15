@@ -12,9 +12,12 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "james-heinrich/getid3": "^1.9",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.4"
+        "laravel/ui": "^2.4",
+        "owen-oj/laravel-getid3": "^1.1",
+        "php-ffmpeg/php-ffmpeg": "^0.17.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

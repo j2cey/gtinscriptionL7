@@ -29,4 +29,14 @@ class CreateParticipantRequest extends FormRequest
     {
         return Participant::createRules();
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return Participant::messagesRules();
+    }
 }

@@ -14,8 +14,8 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
-    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/Logo_Moov_Africa_Fond_Bleu.png') }}">
+    <link rel="icon" href="{{ asset('assets/img/Logo_Moov_Africa_Fond_Bleu.png') }}">
 
     @yield('scripts')
 </head>

@@ -116,27 +116,29 @@
 
                             <template v-if="records.length">
 
-                                <div
-                                    v-for="record in records"
-                                    :key="record.id"
-                                    class="tw-flex tw-flex-wrap tw-p-4 tw-border-b tw-border-dashed tw-border-gray-400 tw-text-gray-700 hover:tw-bg-gray-100"
-                                >
-                                    <div class="tw-flex-auto tw-pr-3">
-                                        @{{ record.name }} (&pound;@{{ record.price }})
+
+
+                                <div class="tw-p-10 tw-grid tw-grid-cols-1 sm:tw-grid-cols-1 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-5">
+
+
+                                <div v-for="record in records"
+                                     :key="record.id" class="tw-rounded tw-overflow-hidden tw-shadow-lg">
+                                    <img class="tw-w-full" src="uploads/participants/fichiersvideo/0f453d8759fcb887a4cd82b3cde6fb5e.mp4" alt="Mountain">
+                                    <div class="tw-px-6 tw-py-4">
+                                        <div class="tw-font-bold tw-text-xl tw-mb-2">Mountain</div>
+                                        <p class="tw-text-gray-700 tw-text-base">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                        </p>
                                     </div>
-                                    <div class="tw-flex-shrink">
-                                        <a
-                                            :href="record.edit_url"
-                                            class="tw-inline-block tw-mr-3 tw-text-green-500"
-                                        >
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </a>
-                                        <a
-                                            :href="record.destroy_url"
-                                            class="tw-inline-block tw-text-red-500">
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                        </a>
+                                    <div class="tw-px-6 tw-pt-4 tw-pb-2">
+                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-3 tw-py-1 tw-text-sm tw-font-semibold tw-text-gray-700 tw-mr-2 tw-mb-2">#photography</span>
+                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-3 tw-py-1 tw-text-sm tw-font-semibold tw-text-gray-700 tw-mr-2 tw-mb-2">#travel</span>
+                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-3 tw-py-1 tw-text-sm tw-font-semibold tw-text-gray-700 tw-mr-2 tw-mb-2">#winter</span>
                                     </div>
+                                </div>
+
+
+
                                 </div>
 
                             </template>

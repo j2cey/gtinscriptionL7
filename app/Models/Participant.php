@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Carbon;
 use App\Traits\File\HasFile;
+use App\Traits\Video\HasVideo;
 
 /**
  * Class Participant
@@ -19,8 +20,17 @@ use App\Traits\File\HasFile;
  * @property string $nomgroupe
  * @property string $email
  * @property string $phone
+ *
  * @property string $fichierpieceidentite
+ * @property integer $fichierpieceidentite_size
+ * @property string $fichierpieceidentite_type
+ *
  * @property string $fichiervideo
+ * @property integer $fichiervideo_size
+ * @property string $fichiervideo_type
+ * @property string $fichiervideo_duree
+ * @property string $fichiervideo_artwork
+ *
  * @property string $complementinfos
  * @property boolean $reglementvalide
  *
@@ -29,14 +39,20 @@ use App\Traits\File\HasFile;
  */
 class Participant extends BaseModel
 {
-    use HasFile;
+    use HasFile, HasVideo;
     protected $guarded = [];
 
     #region Validation Rules
 
     public static function defaultRules() {
         return [
-            'nom' => ['required']
+            'nom' => ['required'],
+            'nomgroupe' => ['required'],
+            'email' => ['email','required'],
+            'phone' => ['required'],
+            'fichierpieceidentite' => ['required'],
+            'fichiervideo' => ['required'],
+            'reglementvalide' => ['required'],
         ];
     }
     public static function createRules() {
@@ -48,6 +64,19 @@ class Participant extends BaseModel
         return array_merge(self::defaultRules(), [
 
         ]);
+    }
+
+    public static function messagesRules() {
+        return [
+            'nom.required' => 'Prière de Renseigner votre Nom',
+            'nomgroupe.required' => 'Prière de Renseigner le Nom du Groupe',
+            'email.required' => 'Prière de Renseigner votre adresse e-mail',
+            'email.email' => 'Prière de Renseigner une adresse e-mail valide',
+            'phone.required' => 'Prière de Renseigner votre Numéro de Phone',
+            'fichierpieceidentite.required' => 'Prière de télécharger votre fichier identité',
+            'fichiervideo.required' => 'Prière de télécharger votre vidéo',
+            'reglementvalide.required' => 'Vous devez aprrouver le règlement !',
+        ];
     }
 
     #endregion

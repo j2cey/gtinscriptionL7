@@ -39,7 +39,7 @@ class ParticipantController extends Controller
 
         $formInput = $request->all();
 
-        dd($formInput, $request);
+        //dd($formInput, $request);
 
         $new_participant = Participant::create([
             'nom' => $formInput['nom'],
@@ -51,9 +51,13 @@ class ParticipantController extends Controller
         ]);
 
         // verifyAndStoreFile( Request $request, $fieldname_rqst, $fieldname_db, $directory = 'unknown', $oldimage = ' ' )
-        $new_participant->verifyAndStoreFile($request, 'fichiervideo', 'fichiervideo', 'participants_fichiersvideo_dir');
+        $video_filename = $new_participant->verifyAndStoreFile($request, 'fichiervideo', 'fichiervideo', 'participants_fichiersvideo_dir');
 
         $new_participant->verifyAndStoreFile($request, 'fichierpieceidentite', 'fichierpieceidentite', 'participants_fichiersidentite_dir');
+
+        $new_participant->setVideoDuration("fichiervideo_duree",'participants_fichiersvideo_dir',$new_participant->fichiervideo);
+        //$new_participant->setVideoParameters($request,'participants_fichiersvideo_dir', 'fichiervideo', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
+        //$new_participant->setVideoParameters('participants_fichiersvideo_dir', $video_filename, 'fichiervideo_duree', 'fichiervideo_artwork');
 
         //session()->flash('msg_success', 'Inscription effectuéé avec succès.');
         return $new_participant;

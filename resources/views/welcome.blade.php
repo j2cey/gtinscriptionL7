@@ -18,6 +18,10 @@
                     <p class="lead text-white fs-20 hidden-sm-down">
                         Faites parler <span class="fw-400"><span class="mark-border">votre Talent</span></span> en participant au concours <br> « montre ton moov ».</p>
 
+                    <p class="text text-primary">
+                        Et gagnez jusqu'à 700 000 CFA
+                    </p>
+
                 </div>
 
                 <div class="col-12 align-self-end text-center">
@@ -50,15 +54,15 @@
             <div class="row gap-y">
 
                 <div class="col-12 col-md-4 feature-2">
-                    <p class="feature-icon"><i class="icon-scope"></i></p>
+                    <p class="feature-icon text-info"><i class="icon-scope"></i></p>
                     <h6>Principe</h6>
-                    <p>Les participants devront réaliser une brève prestation artistique de leur choix, la filmer en respectant les règles de l’éthique et de la morale, puis la poster sur le site web : http://montretonmoov.moov-africa.ga/ .</p>
+                    <p class="text text-justify">Les participants devront réaliser une brève prestation artistique de leur choix, la filmer en respectant les règles de l’éthique et de la morale, puis la poster sur le site web : http://montretonmoov.moov-africa.ga/ .</p>
                 </div>
 
                 <div class="col-12 col-md-4 feature-2">
-                    <p class="feature-icon"><i class="icon-presentation"></i></p>
+                    <p class="feature-icon text-info"><i class="icon-presentation"></i></p>
                     <h6>Eligibilité</h6>
-                    <p>La participation est ouverte à toute personne physique âgée de 16 ans et plus, résidant à Libreville, ou à l’intérieur du pays, à l’exception du personnel de Gabon Télécom, de ses prestataires, des  sociétés organisatrices, de celles ayant pris part à la mise en place du jeu ainsi qu’aux membres de leurs familles respectives.</p>
+                    <p class="text text-justify">La participation est ouverte à toute personne physique âgée de 16 ans et plus, résidant à Libreville, ou à l’intérieur du pays, à l’exception du personnel de Gabon Télécom, de ses prestataires, des  sociétés organisatrices, de celles ayant pris part à la mise en place du jeu ainsi qu’aux membres de leurs familles respectives.</p>
                 </div>
 
                 <div class="col-12 col-md-4 feature-2">
@@ -69,7 +73,7 @@
                         <a class="fw-600 fs-12" href="{{ asset('uploads/pdf/REGLEMENT_JEU_MONTRE_TON_MOOV.VF.pdf') }}">Règlement <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
                     </p>
                     <p>
-                        <a class="btn btn-xs btn-round w-200 btn-secondary-outline mr-16" href="#" data-scrollto="section-formulaire">Inscrivez-vous</a>
+                        <a class="btn btn-xs btn-round w-200 btn-warning mr-16" href="#" data-scrollto="section-formulaire">Inscrivez-vous</a>
                     </p>
                 </div>
 
@@ -78,7 +82,7 @@
             <div class="row gap-y">
 
                 <div class="col-12 col-md-8 feature-2">
-                    <p class="feature-icon"><i class="icon-tools"></i></p>
+                    <p class="feature-icon text-info"><i class="icon-tools"></i></p>
                     <h6>Sélection des Gagnants</h6>
                     <p>
                         <i class="ti-check text-success mr-8"></i>
@@ -96,7 +100,7 @@
                 </div>
 
                 <div class="col-12 col-md-4 feature-2">
-                    <p class="feature-icon text-dark"><i class="icon-mobile"></i></p>
+                    <p class="feature-icon text-info"><i class="icon-gift"></i></p>
                     <h6>Attribution des Lots</h6>
                     <ul class="list-unstyled">
                         Pour les 3 meilleures prestations de chaque phase pendant 3 semaines :

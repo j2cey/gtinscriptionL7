@@ -27,8 +27,16 @@ class CreateParticipantsTable extends Migration
             $table->string('nomgroupe')->nullable()->comment('nom de groupe du participant');
             $table->string('email')->nullable()->comment('adresse email du participant');
             $table->string('phone')->nullable()->comment('numero de phone du participant');
+
             $table->string('fichierpieceidentite')->nullable()->comment('piece identite du participant');
+            $table->integer('fichierpieceidentite_size')->nullable()->comment('taile du fichier de piece identite du participant');
+            $table->string('fichierpieceidentite_type')->nullable()->comment('type du fichier de piece identite du participant');
             $table->string('fichiervideo')->nullable()->comment('video du participant');
+            $table->integer('fichiervideo_size')->nullable()->comment('taille du fichier video du participant');
+            $table->string('fichiervideo_type')->nullable()->comment('type du fichier video du participant');
+            $table->string('fichiervideo_duree')->nullable()->comment('duree de la video du participant');
+            $table->string('fichiervideo_artwork')->nullable()->comment('nom du fichier artwork de la video du participant');
+
             $table->string('complementinfos')->nullable()->comment('complement infos du participant');
             $table->boolean('reglementvalide')->default(false)->comment('complement infos du participant');
         });

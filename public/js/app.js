@@ -2198,24 +2198,53 @@ var Participant = function Participant(participant) {
       participantId: null,
       editing: false,
       loading: false,
-      errors: []
+      errors: [],
+      selectedVideoFile: null,
+      selectedVideoFileName: "Selectionnez votre fichier identité...",
+      selectedIdentiteFile: null,
+      selectedIdentiteFileName: "Selectionnez votre fichier video..."
     };
   },
   methods: {
+    handleIdentiteFileUpload: function handleIdentiteFileUpload(event) {
+      this.selectedIdentiteFile = event.target.files[0];
+      this.selectedIdentiteFileName = typeof this.selectedIdentiteFile !== 'undefined' ? this.selectedIdentiteFile.name : 'Selectionnez votre fichier identité...';
+    },
+    handleVideoFileUpload: function handleVideoFileUpload(event) {
+      this.selectedVideoFile = event.target.files[0];
+      this.selectedVideoFileName = typeof this.selectedVideoFile !== 'undefined' ? this.selectedVideoFile.name : 'Selectionnez votre fichier video...';
+    },
     createParticipant: function createParticipant() {
       var _this = this;
 
       this.loading = true;
-      this.participantForm.post('/participants').then(function (newparticipant) {
+      var fd = new FormData();
+      fd.append('fichierpieceidentite', this.selectedIdentiteFile);
+      fd.append('fichiervideo', this.selectedVideoFile);
+      this.participantForm.post('/participants', fd).then(function (newparticipant) {
         _this.loading = false;
         window.noty({
-          message: 'Votre participation a été bien enregistrée. Merci et restez dans la MOOV',
+          message: 'Votre inscription a été enregistrée, merci pour votre participation !',
           type: 'success'
         });
+
+        _this.resetForm();
       })["catch"](function (error) {
-        console.log(error);
         _this.loading = false;
       });
+    },
+    resetForm: function resetForm() {
+      //this.participantForm.nom = ''
+      //this.participantForm.nomgroupe = ''
+      //this.participantForm.email = ''
+      //this.participantForm.phone = ''
+      //this.participantForm.fichierpieceidentite = ''
+      //this.participantForm.fichiervideo = ''
+      //this.participantForm.complementinfos = ''
+      //this.participantForm.reglementvalide = ''
+      this.participantForm.reset();
+      this.$refs.fichierpieceidentite.value = '';
+      this.$refs.fichiervideo.value = '';
     }
   },
   computed: {
@@ -107753,7 +107782,36 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "form-group" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "input-group" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.participantForm.nom,
+                      expression: "participantForm.nom"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "nom",
+                    placeholder: "Nom",
+                    "aria-describedby": "basic-addon3"
+                  },
+                  domProps: { value: _vm.participantForm.nom },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.participantForm, "nom", $event.target.value)
+                    }
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-sm-left" }, [
                 _vm.participantForm.errors.has("nom")
@@ -107772,11 +107830,32 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.participantForm.nomgroupe,
+                    expression: "participantForm.nomgroupe"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   type: "text",
                   name: "nomgroupe",
                   placeholder: "Nom du Groupe"
+                },
+                domProps: { value: _vm.participantForm.nomgroupe },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.participantForm,
+                      "nomgroupe",
+                      $event.target.value
+                    )
+                  }
                 }
               }),
               _vm._v(" "),
@@ -107796,7 +107875,40 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.participantForm.email,
+                      expression: "participantForm.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "email",
+                    placeholder: "Email address",
+                    "aria-describedby": "basic-addon4"
+                  },
+                  domProps: { value: _vm.participantForm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.participantForm,
+                        "email",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-sm-left" }, [
                 _vm.participantForm.errors.has("email")
@@ -107815,11 +107927,28 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.participantForm.phone,
+                    expression: "participantForm.phone"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   type: "text",
                   name: "phone",
                   placeholder: "Numéro Téléphone"
+                },
+                domProps: { value: _vm.participantForm.phone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.participantForm, "phone", $event.target.value)
+                  }
                 }
               }),
               _vm._v(" "),
@@ -107843,18 +107972,20 @@ var render = function() {
                 staticClass: "form-control file-value",
                 attrs: {
                   type: "text",
-                  placeholder: "Pièce d'identité...",
+                  placeholder: "Chargez votre fichier Identité...",
                   readonly: ""
                 }
               }),
               _vm._v(" "),
               _c("input", {
+                ref: "fichierpieceidentite",
                 attrs: {
                   type: "file",
                   name: "fichierpieceidentite",
                   id: "fichierpieceidentite",
                   multiple: ""
-                }
+                },
+                on: { change: _vm.handleIdentiteFileUpload }
               }),
               _vm._v(" "),
               _vm._m(2),
@@ -107885,12 +108016,14 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("input", {
+                ref: "fichiervideo",
                 attrs: {
                   type: "file",
                   name: "fichiervideo",
                   id: "fichiervideo",
                   multiple: ""
-                }
+                },
+                on: { change: _vm.handleVideoFileUpload }
               }),
               _vm._v(" "),
               _vm._m(3),
@@ -107912,11 +108045,32 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.participantForm.complementinfos,
+                    expression: "participantForm.complementinfos"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   name: "complementinfos",
                   placeholder: "Complément information",
                   rows: "3"
+                },
+                domProps: { value: _vm.participantForm.complementinfos },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.participantForm,
+                      "complementinfos",
+                      $event.target.value
+                    )
+                  }
                 }
               }),
               _vm._v(" "),
@@ -107936,7 +108090,61 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _vm._m(4),
+              _c("label", { staticClass: "custom-control custom-checkbox" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.participantForm.reglementvalide,
+                      expression: "participantForm.reglementvalide"
+                    }
+                  ],
+                  staticClass: "custom-control-input",
+                  attrs: { type: "checkbox", name: "reglementvalide" },
+                  domProps: {
+                    checked: Array.isArray(_vm.participantForm.reglementvalide)
+                      ? _vm._i(_vm.participantForm.reglementvalide, null) > -1
+                      : _vm.participantForm.reglementvalide
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.participantForm.reglementvalide,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.participantForm,
+                              "reglementvalide",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.participantForm,
+                              "reglementvalide",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.participantForm, "reglementvalide", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "custom-control-indicator" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "custom-control-description" }, [
+                  _vm._v(
+                    "Je reconnais avoir pris connaissance du règlement du jeu Moov Ton Moov et m’engage, sans réserve à en respecter les dispositions du fait de mon inscription."
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-sm-left" }, [
                 _vm.participantForm.errors.has("reglementvalide")
@@ -107971,7 +108179,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(5)
+    _vm._m(4)
   ])
 }
 var staticRenderFns = [
@@ -107979,45 +108187,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-addon", attrs: { id: "basic-addon3" } },
-        [_c("i", { staticClass: "ti-user" })]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "nom",
-          placeholder: "Nom",
-          "aria-describedby": "basic-addon3"
-        }
-      })
-    ])
+    return _c(
+      "span",
+      { staticClass: "input-group-addon", attrs: { id: "basic-addon3" } },
+      [_c("i", { staticClass: "ti-user" })]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "email",
-          placeholder: "Email address",
-          "aria-describedby": "basic-addon4"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "span",
-        { staticClass: "input-group-addon", attrs: { id: "basic-addon4" } },
-        [_c("i", { staticClass: "ti-email" })]
-      )
-    ])
+    return _c(
+      "span",
+      { staticClass: "input-group-addon", attrs: { id: "basic-addon4" } },
+      [_c("i", { staticClass: "ti-email" })]
+    )
   },
   function() {
     var _vm = this
@@ -108047,23 +108231,6 @@ var staticRenderFns = [
         },
         [_c("i", { staticClass: "fa fa-upload" })]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { staticClass: "custom-control custom-checkbox" }, [
-      _c("input", {
-        staticClass: "custom-control-input",
-        attrs: { type: "checkbox", name: "reglementvalide" }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "custom-control-indicator" }),
-      _vm._v(" "),
-      _c("span", { staticClass: "custom-control-description" }, [
-        _vm._v("Règlement Lu et Approuvé ?")
-      ])
     ])
   },
   function() {
@@ -129992,6 +130159,7 @@ var Form = /*#__PURE__*/function () {
      * Send a POST request to the given URL.
      * .
      * @param {string} url
+     * @param fd
      */
 
   }, {
