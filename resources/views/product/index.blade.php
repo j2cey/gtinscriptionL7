@@ -123,7 +123,7 @@
 
                                 <div v-for="record in records"
                                      :key="record.id" class="tw-rounded tw-overflow-hidden tw-shadow-lg">
-                                    <img class="tw-w-full" src="uploads/participants/fichiersvideo/0f453d8759fcb887a4cd82b3cde6fb5e.mp4" alt="Mountain">
+                                    <img class="tw-w-full" src="assets/img/thumbnail-default.jpg" alt="Mountain">
                                     <div class="tw-px-6 tw-py-4">
                                         <div class="tw-font-bold tw-text-xl tw-mb-2">Mountain</div>
                                         <p class="tw-text-gray-700 tw-text-base">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use Owenoj\LaravelGetId3\GetId3;
 use App\Http\Requests\Participant\CreateParticipantRequest;
 
 class ParticipantController extends Controller
@@ -36,6 +37,9 @@ class ParticipantController extends Controller
      */
     public function store(CreateParticipantRequest $request)
     {
+        //instantiate class with file
+        //$track = new GetId3( request()->file('fichiervideo') );
+        //dd($track, $track->getPlaytimeSeconds(), $track->extractInfo(), $track->getArtwork());
 
         $formInput = $request->all();
 
@@ -51,13 +55,13 @@ class ParticipantController extends Controller
         ]);
 
         // verifyAndStoreFile( Request $request, $fieldname_rqst, $fieldname_db, $directory = 'unknown', $oldimage = ' ' )
-        $video_filename = $new_participant->verifyAndStoreFile($request, 'fichiervideo', 'fichiervideo', 'participants_fichiersvideo_dir');
+        $video_filename = $new_participant->verifyAndStoreFile($request, 'fichiervideo', 'fichiervideo', 'participants_fichiersvideos_dir');
 
         $new_participant->verifyAndStoreFile($request, 'fichierpieceidentite', 'fichierpieceidentite', 'participants_fichiersidentite_dir');
 
-        $new_participant->setVideoDuration("fichiervideo_duree",'participants_fichiersvideo_dir',$new_participant->fichiervideo);
-        //$new_participant->setVideoParameters($request,'participants_fichiersvideo_dir', 'fichiervideo', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
-        //$new_participant->setVideoParameters('participants_fichiersvideo_dir', $video_filename, 'fichiervideo_duree', 'fichiervideo_artwork');
+        $new_participant->setVideoDuration("fichiervideo_duree",'participants_fichiersvideos_dir',$new_participant->fichiervideo);
+        //$new_participant->setVideoParameters($request,'participants_fichiersvideos_dir', 'fichiervideo', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
+        //$new_participant->setVideoParameters($request, 'participants_fichiersvideos_dir', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
 
         //session()->flash('msg_success', 'Inscription effectuéé avec succès.');
         return $new_participant;

@@ -18,9 +18,7 @@
                     <p class="lead text-white fs-20 hidden-sm-down">
                         Faites parler <span class="fw-400"><span class="mark-border">votre Talent</span></span> en participant au concours <br> « montre ton moov ».</p>
 
-                    <p class="text text-primary">
-                        Et gagnez jusqu'à 700 000 CFA
-                    </p>
+                    <h3 class="text text-primary">Et gagnez jusqu'à 750 000 CFA</h3>
 
                 </div>
 
@@ -84,7 +82,7 @@
                 <div class="col-12 col-md-8 feature-2">
                     <p class="feature-icon text-info"><i class="icon-tools"></i></p>
                     <h6>Sélection des Gagnants</h6>
-                    <p>
+                    <p class="text text-justify">
                         <i class="ti-check text-success mr-8"></i>
                         <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé d’un artiste, de l’agence digitale et d’un huissier de justice.</span>
                         <br>

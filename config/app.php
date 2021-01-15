@@ -41,7 +41,7 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    'participants_fichiersvideo_dir' => env('PARTICIPANTS_FILES_DIR', 'uploads/participants/fichiersvideo'),
+    'participants_fichiersvideos_dir' => env('PARTICIPANTS_FICHIERSVIDEO_DIR', 'uploads/participants/fichiersvideos'),
     'participants_fichiersidentite_dir' => env('PARTICIPANTS_FICHIERSIDENTITE_DIR', 'uploads/participants/fichiersidentite'),
     'participants_pdfs_dir' => env('PARTICIPANTS_PDFS_DIR', 'uploads/pdf'),
 
@@ -170,6 +170,8 @@ return [
          * Package Service Providers...
          */
 
+        ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -230,7 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class,
     ],
 
 ];

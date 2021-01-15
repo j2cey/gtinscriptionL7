@@ -29,10 +29,14 @@
   <nav class="topbar topbar-inverse topbar-expand-md topbar-sticky">
     <div class="container">
 
-      <div class="topbar-left">
-        <button class="topbar-toggler">&#9776;</button>
-          Moov-Africa Gabon Telecom
-      </div>
+        <div class="topbar-left">
+            <button class="topbar-toggler">&#9776;</button>
+            <a class="topbar-brand" href="/">
+                <img class="logo-default" src="{{ asset('assets/img/Logo_Moov_Africa_Fond_Bleu.png') }}" alt="logo">
+                <img class="logo-inverse" src="{{ asset('assets/img/Logo_Moov_Africa_Fond_Blanc.png') }}" alt="logo">
+                Moov-Africa Gabon Telecom
+            </a>
+        </div>
 
 
       <div class="topbar-right">
