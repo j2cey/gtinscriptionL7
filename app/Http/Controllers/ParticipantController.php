@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use http\Client\Response;
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use Iman\Streamer\VideoStreamer;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\SearchCollection;
 use App\Http\Requests\Participant\FetchRequest;
 use App\Http\Resources\Participant as ParticipantResource;
@@ -163,5 +166,38 @@ class ParticipantController extends Controller
         ]);
         /**this will force download your file**/
         return response()->download($path);
+    }
+
+    public function readvideo($uuid)
+    {
+        // participantreadvideo/9280c3da-225e-4630-b3e9-8faf5cb13b65
+        $participant = Participant::where('uuid', $uuid)->first();
+
+        $filename = $participant->name;
+        $file_dir = config('app.' . 'participants_fichiersvideos_dir');
+        $path = $file_dir . '/' . $filename;
+
+        /*return view('participants.readvideo')
+            ->with('participant', $participant)
+            ->with('path', $path);*/
+
+        //$file_dir = config('app.' . 'participants_fichiersvideos_dir');
+        //$path = $file_dir . '/' . $filename;
+
+        VideoStreamer::streamFile($path);
+        https://github.com/j2cey/gtinscriptionL7.git
+    }
+
+    public function getVideo(Participant $participant)
+    {
+        // participantreadvideo/9280c3da-225e-4630-b3e9-8faf5cb13b65
+        $filename = $participant->name;
+        $file_dir = config('app.' . 'participants_fichiersvideos_dir');
+        $path = $file_dir . '/' . $filename;
+
+        $fileContents = Storage::disk('local')->get($path);
+        $response = Response::make($fileContents, 200);
+        $response->header('Content-Type', "video/mp4");
+        return $response;
     }
 }

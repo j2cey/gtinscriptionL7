@@ -1,5 +1,6 @@
 <?php
 
+use Iman\Streamer\VideoStreamer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,14 @@ Route::get('/participant/fetch', 'ParticipantController@fetch')->name('participa
 Route::get('/participant/{participant_id}/edit', 'ParticipantController@edit')->name('participant.edit')->middleware('auth');
 Route::get('/participant/{participant_id}/destroy', 'ParticipantController@destroy')->name('participant.destroy')->middleware('auth');
 Route::get('/participantgetvideo/{uuid}', 'ParticipantController@getvideofile')->name('participant.getvideo')->middleware('auth');
+
+Route::get('/participantreadvideo/{uuid}', 'ParticipantController@readvideo')->name('participant.readvideo');
+Route::get('/xxxxxx', function () {
+    $filename = "f009a0db652ef68ee1be82dd0affb38d.mp4";
+    // /participantreadvideo/f009a0db652ef68ee1be82dd0affb38d.mp4
+    $file_dir = config('app.' . 'participants_fichiersvideos_dir');
+    $path = $file_dir . '/' . $filename;
+
+    VideoStreamer::streamFile($path);
+});
+Route::get('/participantstreamvideo/{id}', 'ParticipantController@streamvideo')->name('participant.streamvideo');
