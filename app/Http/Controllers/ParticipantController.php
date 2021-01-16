@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use App\Http\Resources\SearchCollection;
@@ -148,5 +149,19 @@ class ParticipantController extends Controller
     public function destroy(Participant $participant)
     {
         //
+    }
+
+    public function getvideofile($uuid)
+    {
+        $participant = Participant::where('uuid', $uuid)->first();
+        $filename = $participant->fichiervideo;
+        $file_dir = config('app.' . 'participants_fichiersvideos_dir');
+        $path = $file_dir . '/' . $filename;
+        $participant->update([
+            'videotelecharge' => true,
+            'videotelecharge_date' => Carbon::now(),
+        ]);
+        /**this will force download your file**/
+        return response()->download($path);
     }
 }

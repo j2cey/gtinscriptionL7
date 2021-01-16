@@ -33,3 +33,4 @@ Route::get('/participant', 'ParticipantController@index')->name('participant')->
 Route::get('/participant/fetch', 'ParticipantController@fetch')->name('participant.fetch')->middleware('auth');
 Route::get('/participant/{participant_id}/edit', 'ParticipantController@edit')->name('participant.edit')->middleware('auth');
 Route::get('/participant/{participant_id}/destroy', 'ParticipantController@destroy')->name('participant.destroy')->middleware('auth');
+Route::get('/participantgetvideo/{uuid}', 'ParticipantController@getvideofile')->name('participant.getvideo')->middleware('auth');
