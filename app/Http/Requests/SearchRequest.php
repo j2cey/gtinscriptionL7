@@ -15,8 +15,8 @@ use Illuminate\Validation\Rule;
  * @package App\Http\Requests
  *
  * @property string|null $search
- * @property string|null $dateremise_du
- * @property string|null $dateremise_au
+ * @property string|null $datecreate_du
+ * @property string|null $datecreate_au
  * @property string|null $localisation
  * @property string|null $type
  * @property string|null $statut

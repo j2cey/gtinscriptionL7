@@ -19,10 +19,26 @@ trait HasVideo
         return $duration;
     }
 
+    public function getVideoFormat($full_video_path)
+    {
+        $getID3 = new \getID3;
+        $file = $getID3->analyze($full_video_path);
+        $video_format = $file['fileformat'];
+
+        return $video_format;
+    }
+
     public function setVideoDuration($fieldname_db,$videodirectory,$videofullname) {
         $full_video_path = config('app.' . $videodirectory) . '/' . $videofullname;
         $this->update([
             $fieldname_db => $this->getVideoDuration($full_video_path),
+        ]);
+    }
+
+    public function setVideoFormat($fieldname_db,$videodirectory,$videofullname) {
+        $full_video_path = config('app.' . $videodirectory) . '/' . $videofullname;
+        $this->update([
+            $fieldname_db => $this->getVideoFormat($full_video_path),
         ]);
     }
 

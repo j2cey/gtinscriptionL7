@@ -39,6 +39,8 @@ class CreateParticipantsTable extends Migration
 
             $table->string('complementinfos')->nullable()->comment('complement infos du participant');
             $table->boolean('reglementvalide')->default(false)->comment('complement infos du participant');
+            $table->boolean('videotelecharge')->default(false)->comment('indique si la video du participant a deja ete telechargée');
+            $table->timestamp('videotelecharge_date')->nullable()->comment('date dernier telechargement');
         });
         $this->setTableComment($this->table_name,$this->table_comment);
     }

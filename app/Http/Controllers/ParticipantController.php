@@ -4,11 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use Illuminate\Http\Request;
-use Owenoj\LaravelGetId3\GetId3;
+use App\Http\Resources\SearchCollection;
+use App\Http\Requests\Participant\FetchRequest;
+use App\Http\Resources\Participant as ParticipantResource;
 use App\Http\Requests\Participant\CreateParticipantRequest;
+use App\Repositories\Contracts\IParticipantRepositoryContract;
+
+use Exception;
+use \Illuminate\View\View;
+use Illuminate\Support\Collection;
+use Illuminate\Http\RedirectResponse;
 
 class ParticipantController extends Controller
 {
+    /**
+     * @var IParticipantRepositoryContract
+     */
+    private $repository;
+
+    /**
+     * ParticipantController constructor.
+     *
+     * @param IParticipantRepositoryContract $repository [description]
+     */
+    public function __construct(IParticipantRepositoryContract $repository) {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +38,22 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        //
+        return view('participants.index')
+            ->with('perPage', new Collection(config('system.per_page')))
+            ->with('defaultPerPage', config('system.default_per_page'));
+    }
+
+    /**
+     * Fetch records.
+     *
+     * @param  FetchRequest     $request [description]
+     * @return SearchCollection          [description]
+     */
+    public function fetch(FetchRequest $request)
+    {
+        return new SearchCollection(
+            $this->repository->search($request), ParticipantResource::class
+        );
     }
 
     /**
@@ -60,6 +97,7 @@ class ParticipantController extends Controller
         $new_participant->verifyAndStoreFile($request, 'fichierpieceidentite', 'fichierpieceidentite', 'participants_fichiersidentite_dir');
 
         $new_participant->setVideoDuration("fichiervideo_duree",'participants_fichiersvideos_dir',$new_participant->fichiervideo);
+        //$new_participant->setVideoFormat("fichiervideo_type",'participants_fichiersvideos_dir',$new_participant->fichiervideo);
         //$new_participant->setVideoParameters($request,'participants_fichiersvideos_dir', 'fichiervideo', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
         //$new_participant->setVideoParameters($request, 'participants_fichiersvideos_dir', 'fichiervideo', 'fichiervideo_duree', 'fichiervideo_artwork');
 

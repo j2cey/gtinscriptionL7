@@ -34,6 +34,9 @@ use App\Traits\Video\HasVideo;
  * @property string $complementinfos
  * @property boolean $reglementvalide
  *
+ * @property boolean $videotelecharge
+ * @property Carbon $videotelecharge_date
+ *
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
