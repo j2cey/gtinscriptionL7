@@ -23,7 +23,7 @@ class ParticipantSearch extends Search
             $searchCrit = $this->getSearchCrit($this->params->search->search);
             $statutvideo = $this->getStatutVideoCrit($this->params->search->search);
             //dd($statutvideo, $this->params->search->search);
-            if ($datecreatedrange) {
+            if ($searchCrit) {
                 $query
                     ->where('nom', 'like', '%' . $searchCrit . '%')
                     ->where('email', 'like', '%' . $searchCrit . '%')
