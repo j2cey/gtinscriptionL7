@@ -16,7 +16,7 @@ class FetchRequest extends FormRequest  implements ISearchFormRequest
      */
     protected function orderByFields() : array
     {
-        return ['nom', 'email'];
+        return ['id', 'nom'];
     }
 
     /**
@@ -24,7 +24,7 @@ class FetchRequest extends FormRequest  implements ISearchFormRequest
      */
     protected function defaultOrderByField() : string
     {
-        return 'nom';
+        return 'id';
     }
 
     protected function getCustomPayload()
@@ -33,6 +33,7 @@ class FetchRequest extends FormRequest  implements ISearchFormRequest
         $payload = $this->addToPayload($payload, 'search', $this->search);
         $payload = $this->addToPayload($payload, 'datecreate_du', substr($this->datecreate_du, 0, 10));
         $payload = $this->addToPayload($payload, 'datecreate_au', substr($this->datecreate_au, 0, 10));
+        $payload = $this->addToPayload($payload, 'statutvideos', $this->statutvideos);
 
         return $payload;
     }

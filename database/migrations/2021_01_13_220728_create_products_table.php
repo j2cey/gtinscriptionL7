@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
         });
+        $this->setTableComment($this->table_name,$this->table_comment);
     }
 
     /**

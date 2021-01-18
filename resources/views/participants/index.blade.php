@@ -21,9 +21,10 @@
                             search: '',
                             per_page: {{ $defaultPerPage }},
                             page: 1,
-                            order_by: 'created_at:desc',
+                            order_by: 'id:desc',
                             datecreate_du: '',
                             datecreate_au: '',
+                            statutvideos: '',
                             }"
                         v-slot="{ params, update, change, clear, processing }"
                     >
@@ -81,24 +82,30 @@
 
                             <div class="tw-col-span-4 md:tw-col-span-2">
                                 <label
-                                    for="per_page"
+                                    for="statutvideos"
                                     class="tw-block tw-uppercase tw-tracking-wide tw-text-gray-700 tw-text-xs tw-font-bold tw-mb-2"
                                 >
-                                    Par Page
+                                    Statut Vidéo
                                 </label>
-                                <div class="tw-relative">
-                                    <select
-                                        v-model="params.per_page"
-                                        @change="change"
-                                        id="per_page"
-                                        class="tw-appearance-none tw-block tw-w-full tw-bg-gray-200 focus:tw-bg-white tw-text-gray-700 tw-border tw-border-gray-400 focus:tw-border-gray-500 tw-rounded-sm tw-py-3 tw-pl-4 tw-pr-8 tw-leading-tight focus:tw-outline-none"
-                                    >
-                                        <option
-                                            v-for="perPage in {{ $perPage }}"
-                                            :value="perPage"
-                                        >@{{ perPage }}</option>
-                                    </select>
-                                    <select-angle></select-angle>
+                                <div class="tw-inline-flex">
+                                    <div class="tw-relative">
+                                        <select
+                                            v-model="params.statutvideos"
+                                            @change="change"
+                                            id="statutvideos"
+                                            class="tw-appearance-none tw-block tw-w-full tw-bg-gray-200 focus:tw-bg-white tw-text-gray-700 tw-border tw-border-gray-400 focus:tw-border-gray-500 tw-rounded-sm tw-py-3 tw-pl-4 tw-pr-8 tw-leading-tight focus:tw-outline-none"
+
+                                        >
+                                            <option
+                                                v-for="statutvideo in {{ $statutvideos }}"
+                                                :value="statutvideo.id"
+                                            >@{{ statutvideo.name }}</option>
+                                        </select>
+                                        <select-angle></select-angle>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button type="button" id="statutvideos_clear" name="statutvideos_clear" class="btn btn-default" @click="[params.statutvideos= '', change()]"><i class="fa fa-times"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -118,6 +125,7 @@
                                 <div class="tw-flex-auto tw-pr-3">Total : @{{ total }}</div>
                             </div>
 
+
                             <template v-if="records.length">
 
 
@@ -125,30 +133,32 @@
                                 <div class="tw-p-10 tw-grid tw-grid-cols-1 sm:tw-grid-cols-1 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-5">
 
 
-                                <div v-for="record in records"
-                                     :key="record.id" class="tw-rounded tw-overflow-hidden tw-shadow-lg">
-                                    <img class="tw-w-full" src="assets/img/thumbnail-default.jpg" alt="Mountain">
-                                    <div class="tw-px-6 tw-py-4">
-                                        <div class="tw-font-bold tw-text-xl tw-mb-2">@{{ record.nomgroupe }}</div>
-                                        <div class="tw-font-bold tw-text-xs tw-mb-2"><i class="fa fa-user"></i> @{{ record.nom }}</div>
-                                        <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-phone"></i> @{{ record.phone }}</div>
-                                        <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-envelope"></i> @{{ record.email }}</div>
+                                    <div v-for="record in records"
+                                         :key="record.id" class="tw-rounded tw-overflow-hidden tw-shadow-lg">
+                                        <img class="tw-w-full" src="assets/img/thumbnail-default.jpg" alt="Mountain">
+                                        <div class="tw-px-6 tw-py-4">
+                                            <div class="tw-font-bold tw-text-xl tw-mb-2">@{{ record.nomgroupe }}</div>
+                                            <div class="tw-font-bold tw-text-xs tw-mb-2"><i class="fa fa-user"></i>
+                                                <a class="fw-600 fs-12" :href="record.fichieridentite_url" >@{{ record.nom }}</a>
+                                            </div>
+                                            <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-phone"></i> @{{ record.phone }}</div>
+                                            <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-envelope"></i> @{{ record.email }}</div>
 
-                                        <p class="tw-text-gray-700 tw-text-base">@{{ record.complementinfos }}</p>
+                                            <p class="tw-text-gray-700 tw-text-base">@{{ record.complementinfos }}</p>
+                                        </div>
+                                        <div class="tw-px-6 tw-pt-4 tw-pb-2">
+                                            <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file-video"></i> @{{ record.fichiervideo_type }}</span>
+                                            <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file"></i> @{{ record.fichiervideo_size }}</span>
+                                            <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-clock"></i> @{{ record.fichiervideo_duree }}</span>
+                                        </div>
+                                        <div class="tw-px-6 tw-pt-4 tw-pb-2">
+                                            <a
+                                                :href="record.destroy_url"
+                                                class="tw-inline-block tw-text-red-500">
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="tw-px-6 tw-pt-4 tw-pb-2">
-                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file-video"></i> @{{ record.fichiervideo_type }}</span>
-                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file"></i> @{{ record.fichiervideo_size }}</span>
-                                        <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-clock"></i> @{{ record.fichiervideo_duree }}</span>
-                                    </div>
-                                    <div class="tw-px-6 tw-pt-4 tw-pb-2">
-                                        <a
-                                            :href="record.destroy_url"
-                                            class="tw-inline-block tw-text-red-500">
-                                            <i class="fa fa-download" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
 
 
 

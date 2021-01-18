@@ -21,15 +21,23 @@ class ParticipantSearch extends Search
         if ($this->params->search->hasFilter()) {
             $datecreatedrange = $this->getDateCreatedRangeCrit($this->params->search->search);
             $searchCrit = $this->getSearchCrit($this->params->search->search);
-            $query
-                ->where('nom', 'like', '%'.$searchCrit.'%')
-                ->orWhere('email', 'like', '%'.$searchCrit.'%')
-                ->orWhere('nomgroupe', 'like', '%'.$searchCrit.'%');
+            $statutvideo = $this->getStatutVideoCrit($this->params->search->search);
+            //dd($statutvideo, $this->params->search->search);
+            if ($datecreatedrange) {
+                $query
+                    ->where('nom', 'like', '%' . $searchCrit . '%')
+                    ->where('email', 'like', '%' . $searchCrit . '%')
+                    ->where('nomgroupe', 'like', '%' . $searchCrit . '%');
+            }
             if ($datecreatedrange) {
                 $dt_deb = Carbon::createFromFormat('Y-m-d', $datecreatedrange[0])->addDay()->format('Y-m-d');
                 $dt_fin = Carbon::createFromFormat('Y-m-d', $datecreatedrange[1])->addDay()->format('Y-m-d');
                 $query
-                    ->orWhereBetween('created_at', [$dt_deb,$dt_fin]);
+                    ->whereBetween('created_at', [$dt_deb,$dt_fin]);
+            }
+            if ($statutvideo) {
+                $query
+                    ->where('statut_video_id', $statutvideo);
             }
         }
 
@@ -52,13 +60,27 @@ class ParticipantSearch extends Search
 
     private function getSearchCrit($search) {
         $search_arr = explode('|', $search);
-        $statut = null;
+        $search_crit = null;
         foreach ($search_arr as $crit) {
             $crit_arr = explode(':', $crit);
             if ($crit_arr[0] === "search") {
-                $statut = $crit_arr[1];
+                $search_crit = $crit_arr[1];
+                break;
             }
         }
-        return $statut;
+        return $search_crit;
+    }
+
+    private function getStatutVideoCrit($search) {
+        $search_arr = explode('|', $search);
+        $statutvideo = null;
+        foreach ($search_arr as $crit) {
+            $crit_arr = explode(':', $crit);
+            if ($crit_arr[0] === "statutvideos") {
+                $statutvideo = $crit_arr[1];
+                break;
+            }
+        }
+        return $statutvideo;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use http\Client\Response;
 use App\Models\Participant;
+use App\Models\StatutVideo;
 use Illuminate\Http\Request;
 use Iman\Streamer\VideoStreamer;
 use Illuminate\Support\Facades\Storage;
@@ -42,9 +43,11 @@ class ParticipantController extends Controller
      */
     public function index()
     {
+        $statutvideos = StatutVideo::all();
         return view('participants.index')
             ->with('perPage', new Collection(config('system.per_page')))
-            ->with('defaultPerPage', config('system.default_per_page'));
+            ->with('defaultPerPage', config('system.default_per_page'))
+            ->with('statutvideos', $statutvideos);
     }
 
     /**
@@ -93,6 +96,8 @@ class ParticipantController extends Controller
             'phone' => $formInput['phone'],
             'complementinfos' => $formInput['complementinfos'],
             'reglementvalide' => $request->getCheckValue('reglementvalide'),
+            'statut_video_id' => StatutVideo::default()->first()->id,
+            'statut_video_name' => StatutVideo::default()->first()->name
         ]);
 
         // verifyAndStoreFile( Request $request, $fieldname_rqst, $fieldname_db, $directory = 'unknown', $oldimage = ' ' )
@@ -161,6 +166,8 @@ class ParticipantController extends Controller
         $file_dir = config('app.' . 'participants_fichiersvideos_dir');
         $path = $file_dir . '/' . $filename;
         $participant->update([
+            'statut_video_id' => StatutVideo::coded("telecharge_ok")->first()->id,
+            'statut_video_name' => StatutVideo::coded("telecharge_ok")->first()->name,
             'videotelecharge' => true,
             'videotelecharge_date' => Carbon::now(),
         ]);
