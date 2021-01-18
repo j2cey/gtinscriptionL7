@@ -147,16 +147,15 @@
                                             <p class="tw-text-gray-700 tw-text-base">@{{ record.complementinfos }}</p>
                                         </div>
                                         <div class="tw-px-6 tw-pt-4 tw-pb-2">
-                                            <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file-video"></i> @{{ record.fichiervideo_type }}</span>
+                                            <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2">
+                                                <a
+                                                    :href="record.destroy_url"
+                                                    class="tw-inline-block tw-text-red-500">
+                                                <i class="fa fa-file-video"></i> @{{ record.fichiervideo_type }}
+                                            </a>
+                                            </span>
                                             <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-file"></i> @{{ record.fichiervideo_size }}</span>
                                             <span class="tw-inline-block tw-bg-gray-200 tw-rounded-full tw-px-2 tw-py-1 tw-text-xs tw-font-thin tw-text-gray-700 tw-mr-2 tw-mb-2"><i class="fa fa-clock"></i> @{{ record.fichiervideo_duree }}</span>
-                                        </div>
-                                        <div class="tw-px-6 tw-pt-4 tw-pb-2">
-                                            <a
-                                                :href="record.destroy_url"
-                                                class="tw-inline-block tw-text-red-500">
-                                                <i class="fa fa-download" aria-hidden="true"></i>
-                                            </a>
                                         </div>
                                     </div>
 
