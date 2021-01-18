@@ -22,12 +22,12 @@ class ParticipantSearch extends Search
             $datecreatedrange = $this->getDateCreatedRangeCrit($this->params->search->search);
             $searchCrit = $this->getSearchCrit($this->params->search->search);
             $statutvideo = $this->getStatutVideoCrit($this->params->search->search);
-            //dd($statutvideo, $this->params->search->search);
+            //dd($searchCrit, $this->params->search->search);
             if ($searchCrit) {
                 $query
                     ->where('nom', 'like', '%' . $searchCrit . '%')
-                    ->where('email', 'like', '%' . $searchCrit . '%')
-                    ->where('nomgroupe', 'like', '%' . $searchCrit . '%');
+                    ->orWhere('email', 'like', '%' . $searchCrit . '%')
+                    ->orWhere('nomgroupe', 'like', '%' . $searchCrit . '%');
             }
             if ($datecreatedrange) {
                 $dt_deb = Carbon::createFromFormat('Y-m-d', $datecreatedrange[0])->addDay()->format('Y-m-d');
