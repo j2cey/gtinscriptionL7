@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Montre-Ton-Moov') }}</title>
 
     <link href="{{ asset('assets/css/core.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/thesaas.min.css') }}" rel="stylesheet">

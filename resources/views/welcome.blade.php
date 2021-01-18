@@ -8,14 +8,14 @@
             <div class="row h-full">
                 <div class="col-12 col-lg-8 offset-lg-2 align-self-center">
 
-                    <h1 class="display-4 hidden-sm-down">
+                    <h1 class="display-4">
                         Concours
                         <p>« Montre Ton Moov »</p>
                         de Moov Africa-Gabon Telecom
                     </h1>
-                    <h1 class="hidden-md-up">lorem ipsum</h1>
+
                     <br>
-                    <p class="lead text-white fs-20 hidden-sm-down">
+                    <p class="lead text-white fs-20">
                         Faites parler <span class="fw-400"><span class="mark-border">votre Talent</span></span> en participant au concours <br> « montre ton moov ».</p>
 
                     <h3 class="text text-primary">Et gagnez jusqu'à 750 000 CFA</h3>
