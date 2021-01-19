@@ -58,8 +58,8 @@ class Participant extends BaseModel
     }
     public static function createRules() {
         return array_merge(self::defaultRules(), [
-            'fichierpieceidentite' => ['required','file','max:8192'],
-            'fichiervideo' => ['required','file','max:8192'],
+            'fichierpieceidentite' => ['required','file','max:20192'],
+            'fichiervideo' => ['required','file','max:20192'],
         ]);
     }
     public static function updateRules($model) {
@@ -76,9 +76,11 @@ class Participant extends BaseModel
             'email.email' => 'Prière de Renseigner une adresse e-mail valide',
             'phone.required' => 'Prière de Renseigner votre Numéro de Phone',
             'fichierpieceidentite.required' => 'Prière de télécharger votre fichier identité',
-            'fichierpieceidentite.file' => 'Prière de télécharger votre fichier identité',
-            'fichierpieceidentite.max' => 'Prière de télécharger votre fichier identité',
+            'fichierpieceidentite.file' => 'Le fichier identité doit etre un fichier valide',
+            'fichierpieceidentite.max' => 'La taille du fichier identité doit etre de 20 Mo max',
             'fichiervideo.required' => 'Prière de télécharger votre vidéo',
+            'fichiervideo.file' => 'La vidéo doit etre un fichier valide',
+            'fichiervideo.max' => 'La taille du fichier video doit etre de 20 Mo max',
             'reglementvalide.required' => 'Vous devez aprrouver le règlement !',
         ];
     }

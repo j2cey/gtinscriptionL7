@@ -107972,7 +107972,7 @@ var render = function() {
                 staticClass: "form-control file-value",
                 attrs: {
                   type: "text",
-                  placeholder: "Chargez votre fichier Identité...",
+                  placeholder: "Chargez votre fichier Identité...(20 Mo max)",
                   readonly: ""
                 }
               }),
@@ -108010,7 +108010,7 @@ var render = function() {
                 staticClass: "form-control file-value",
                 attrs: {
                   type: "text",
-                  placeholder: "Chargez votre Vidéo...",
+                  placeholder: "Chargez votre Vidéo...(20 Mo max)",
                   readonly: ""
                 }
               }),

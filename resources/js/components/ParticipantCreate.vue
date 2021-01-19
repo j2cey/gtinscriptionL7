@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group input-group file-group">
-                    <input type="text" class="form-control file-value" placeholder="Chargez votre fichier Identité..." readonly>
+                    <input type="text" class="form-control file-value" placeholder="Chargez votre fichier Identité...(20 Mo max)" readonly>
                     <input type="file" name="fichierpieceidentite" id="fichierpieceidentite" ref="fichierpieceidentite" @change="handleIdentiteFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group input-group file-group">
-                    <input type="text" class="form-control file-value" placeholder="Chargez votre Vidéo..." readonly>
+                    <input type="text" class="form-control file-value" placeholder="Chargez votre Vidéo...(20 Mo max)" readonly>
                     <input type="file" name="fichiervideo" id="fichiervideo" ref="fichiervideo" @change="handleVideoFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>

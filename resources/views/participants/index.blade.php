@@ -139,7 +139,12 @@
                                         <div class="tw-px-6 tw-py-4">
                                             <div class="tw-font-bold tw-text-xl tw-mb-2">@{{ record.nomgroupe }}</div>
                                             <div class="tw-font-bold tw-text-xs tw-mb-2"><i class="fa fa-user"></i>
-                                                <a class="fw-600 fs-12" :href="record.fichieridentite_url" >@{{ record.nom }}</a>
+                                                @{{ record.nom }}
+                                                <a
+                                                    :href="record.fichieridentite_url"
+                                                    class="tw-inline-block tw-text-red-500">
+                                                    <i class="fa fa-paperclip"></i>
+                                                </a>
                                             </div>
                                             <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-phone"></i> @{{ record.phone }}</div>
                                             <div class="tw-font-thin tw-text-xs tw-mb-2"><i class="fa fa-envelope"></i> @{{ record.email }}</div>
