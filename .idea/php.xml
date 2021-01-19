@@ -117,6 +117,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/pbmedia/laravel-ffmpeg" />
       <path value="$PROJECT_DIR$/vendor/imanghafoori/laravel-video" />
+      <path value="$PROJECT_DIR$/vendor/owen-it/laravel-auditing" />
     </include_path>
   </component>
   <component name="PhpUnit">

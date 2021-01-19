@@ -171,6 +171,7 @@ return [
          */
 
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
 
         /*
          * Application Service Providers...

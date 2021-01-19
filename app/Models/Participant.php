@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Carbon;
 use App\Traits\File\HasFile;
 use App\Traits\Video\HasVideo;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class Participant
@@ -40,9 +41,9 @@ use App\Traits\Video\HasVideo;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-class Participant extends BaseModel
+class Participant extends BaseModel implements Auditable
 {
-    use HasFile, HasVideo;
+    use HasFile, HasVideo, \OwenIt\Auditing\Auditable;
     protected $guarded = [];
 
     #region Validation Rules

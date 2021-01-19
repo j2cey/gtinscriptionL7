@@ -15,6 +15,8 @@ class UserSeeder extends Seeder
         $users_list = [
             ['name' => "Admin 01", 'username' => "admin.01", 'email' => "admin01@moov-africa.ga", 'password' => "admin123"],
             ['name' => "Admin 02", 'username' => "admin.02", 'email' => "admin02@moov-africa.ga", 'password' => "admin123"],
+            ['name' => "Jury 01", 'username' => "jury.01", 'email' => "jury01@moov-africa.ga", 'password' => "jury01moovafrica"],
+            ['name' => "Jury 02", 'username' => "jury.02", 'email' => "jury02@moov-africa.ga", 'password' => "jury02moovafrica"],
         ];
 
         foreach ($users_list as $user) {

@@ -44,10 +44,9 @@
         <div class="container">
 
             <header class="section-header">
-                <h2>Détails sur le jeu concours</h2>
-                <p>Le jeu concours Montre ton Moov consiste en l’exécution d’une prestation artistique dans des domaines variés, en groupe ou en individuel mettant en valeur la diversité de la culture africaine.</p>
+                <h2>Détails sur le concours</h2>
+                <p>Le concours Montre ton Moov consiste en l’exécution d’une prestation artistique dans des domaines variés, en groupe ou en individuel mettant en valeur la diversité de la culture africaine.</p>
             </header>
-
 
             <div class="row gap-y">
 
@@ -66,9 +65,9 @@
                 <div class="col-12 col-md-4 feature-2">
                     <p class="feature-icon text-info"><i class="icon-gears"></i></p>
                     <h6>Règlement</h6>
-                    <p>Cliquer ci-dessous pour consulter le règlement.</p>
-                    <p>
-                        <a class="fw-600 fs-12" href="{{ asset('uploads/pdf/REGLEMENT_JEU_MONTRE_TON_MOOV.VF.pdf') }}">Règlement <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
+                    <p>Cliquer ci-dessous pour consulter le ...
+                        <br>
+                        <a class="fw-600 fs-18 text-danger" href="{{ asset('uploads/pdf/REGLEMENT_JEU_MONTRE_TON_MOOV.VF_1.pdf') }}">... Règlement du Concours <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
                     </p>
                     <p>
                         <a class="btn btn-xs btn-round w-200 btn-warning mr-16" href="#" data-scrollto="section-formulaire">Inscrivez-vous</a>
@@ -84,7 +83,7 @@
                     <h6>Sélection des Gagnants</h6>
                     <p class="text text-justify">
                         <i class="ti-check text-success mr-8"></i>
-                        <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé d’un artiste, de l’agence digitale et d’un huissier de justice.</span>
+                        <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé deux artistes professionels et de l’agence digitale.</span>
                         <br>
                         <i class="ti-check text-success mr-8"></i>
                         <span class="fs-14">Mise en ligne sur la page Facebook des 10 meilleures vidéos présélectionnées suivant les critères d’originalité de la prestation et de la maîtrise du domaine.</span>
