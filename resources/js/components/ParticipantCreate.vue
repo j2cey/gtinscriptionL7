@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group input-group file-group">
-                    <input type="text" class="form-control file-value" placeholder="Chargez votre fichier Identité...(20 Mo max)" readonly>
+                    <input type="text" class="form-control file-value" :placeholder="identiteFilePlaceholder" readonly>
                     <input type="file" name="fichierpieceidentite" id="fichierpieceidentite" ref="fichierpieceidentite" @change="handleIdentiteFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group input-group file-group">
-                    <input type="text" class="form-control file-value" placeholder="Chargez votre Vidéo...(20 Mo max)" readonly>
+                    <input type="text" class="form-control file-value" :placeholder="videoFilePlaceholder" readonly>
                     <input type="file" name="fichiervideo" id="fichiervideo" ref="fichiervideo" @change="handleVideoFileUpload" multiple>
                     <span class="input-group-btn">
                         <button class="btn btn-white file-browser" type="button"><i class="fa fa-upload"></i></button>
@@ -94,6 +94,10 @@
 
     export default {
         name: "ParticipantCreate",
+        props: {
+            getfileuploadmaxsize_prop: 0,
+            getvideouploadmaxsize_prop: 0,
+        },
         mounted() {
             this.editing = false
             this.participant = new Participant({})
@@ -110,7 +114,8 @@
                 selectedVideoFile : null,
                 selectedVideoFileName : "Selectionnez votre fichier identité...",
                 selectedIdentiteFile : null,
-                selectedIdentiteFileName : "Selectionnez votre fichier video...",
+                identiteFilePlaceholder : "Chargez votre fichier Identité...(" + this.getfileuploadmaxsize_prop + " Mo max)",
+                videoFilePlaceholder : "Chargez votre Vidéo...(" + this.getvideouploadmaxsize_prop + " Mo max)",
             }
         },
         methods: {

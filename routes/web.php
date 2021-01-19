@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Participant;
 use Iman\Streamer\VideoStreamer;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $getfileuploadmaxsize = Participant::getFileUploadMaxSize("Mo");
+    $getvideouploadmaxsize = Participant::getVideoUploadMaxSize("Mo");
+    return view('welcome')
+        ->with('getfileuploadmaxsize', $getfileuploadmaxsize)
+        ->with('getvideouploadmaxsize', $getvideouploadmaxsize);
 })->name('home');
 
+Route::resource('settings','SettingController');
 Route::resource('participants','ParticipantController');
 
 Auth::routes();

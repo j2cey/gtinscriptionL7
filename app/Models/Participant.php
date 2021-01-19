@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Data\HasData;
 use Illuminate\Support\Carbon;
 use App\Traits\File\HasFile;
 use App\Traits\Video\HasVideo;
@@ -43,7 +44,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  */
 class Participant extends BaseModel implements Auditable
 {
-    use HasFile, HasVideo, \OwenIt\Auditing\Auditable;
+    use HasFile, HasVideo, HasData, \OwenIt\Auditing\Auditable;
     protected $guarded = [];
 
     #region Validation Rules
@@ -59,8 +60,8 @@ class Participant extends BaseModel implements Auditable
     }
     public static function createRules() {
         return array_merge(self::defaultRules(), [
-            'fichierpieceidentite' => ['required','file','max:20192'],
-            'fichiervideo' => ['required','file','max:20192'],
+            'fichierpieceidentite' => ['required','file','max:'. Participant::getFileUploadMaxSize("ko")],
+            'fichiervideo' => ['required','file','max:' . Participant::getVideoUploadMaxSize("ko")],
         ]);
     }
     public static function updateRules($model) {
@@ -78,13 +79,23 @@ class Participant extends BaseModel implements Auditable
             'phone.required' => 'Prière de Renseigner votre Numéro de Phone',
             'fichierpieceidentite.required' => 'Prière de télécharger votre fichier identité',
             'fichierpieceidentite.file' => 'Le fichier identité doit etre un fichier valide',
-            'fichierpieceidentite.max' => 'La taille du fichier identité doit etre de 20 Mo max',
+            'fichierpieceidentite.max' => 'La taille du fichier identité doit etre de ' . Participant::getFileUploadMaxSize("Mo") .' Mo max',
             'fichiervideo.required' => 'Prière de télécharger votre vidéo',
             'fichiervideo.file' => 'La vidéo doit etre un fichier valide',
-            'fichiervideo.max' => 'La taille du fichier video doit etre de 20 Mo max',
+            'fichiervideo.max' => 'La taille du fichier video doit etre de ' . Participant::getVideoUploadMaxSize("Mo") .' Mo max',
             'reglementvalide.required' => 'Vous devez aprrouver le règlement !',
         ];
     }
 
     #endregion
+
+    public static function getFileUploadMaxSize($type_wanted) {
+        $val_mo = config('Settings.files.uploads.max_size.any');
+        return (new Participant())->convert_bytes($val_mo, "Mo", $type_wanted);
+    }
+
+    public static function getVideoUploadMaxSize($type_wanted) {
+        $val_mo = config('Settings.files.uploads.max_size.video');
+        return (new Participant())->convert_bytes($val_mo, "Mo", $type_wanted);
+    }
 }

@@ -14,6 +14,14 @@ class SettingSeeder extends Seeder
     {
         // groupe app_name, id: 1
         $this->createNew("app_name", null, "Moov-Africa Inscriptions", "string", "Application Name.");
+        // groupe files, id: 2
+        $this->createNew("files", null, null, null, "settings Files.");
+        // sub groupe files.uploads, id: 3
+        $this->createNew("uploads", 2, null, null, "Uploads.");
+        // sub groupe files.uploads.max_size, id: 4
+        $this->createNew("max_size", 3, null, null, "Max Size.");
+        $this->createNew("any", 4, "70", "integer", "Max any file size.");
+        $this->createNew("video", 4, "70", "integer", "Max video file size.");
     }
 
     private function createNew($name, $group_id = null, $value = null, $type = null, $description = null) {

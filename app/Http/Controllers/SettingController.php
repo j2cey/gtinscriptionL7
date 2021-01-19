@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Setting;
+use App\Models\Setting;
+use App\Models\Participant;
 use Illuminate\Http\Request;
+use App\Traits\Data\HasData;
 
 class SettingController extends Controller
 {
+    use HasData;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $all_settings = Setting::getAllGrouped();
+
+        //$val_mo = config('Settings.files.uploads.max_size.video');
+        dd($all_settings, Participant::getFileUploadMaxSize("Mo"));//$val_mo, $this->convert_bytes($val_mo, "Mo", "ko"));
     }
 
     /**

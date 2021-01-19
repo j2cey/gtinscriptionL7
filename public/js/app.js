@@ -2186,6 +2186,10 @@ var Participant = function Participant(participant) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ParticipantCreate",
+  props: {
+    getfileuploadmaxsize_prop: 0,
+    getvideouploadmaxsize_prop: 0
+  },
   mounted: function mounted() {
     this.editing = false;
     this.participant = new Participant({});
@@ -2202,7 +2206,8 @@ var Participant = function Participant(participant) {
       selectedVideoFile: null,
       selectedVideoFileName: "Selectionnez votre fichier identité...",
       selectedIdentiteFile: null,
-      selectedIdentiteFileName: "Selectionnez votre fichier video..."
+      identiteFilePlaceholder: "Chargez votre fichier Identité...(" + this.getfileuploadmaxsize_prop + " Mo max)",
+      videoFilePlaceholder: "Chargez votre Vidéo...(" + this.getvideouploadmaxsize_prop + " Mo max)"
     };
   },
   methods: {
@@ -107972,7 +107977,7 @@ var render = function() {
                 staticClass: "form-control file-value",
                 attrs: {
                   type: "text",
-                  placeholder: "Chargez votre fichier Identité...(20 Mo max)",
+                  placeholder: _vm.identiteFilePlaceholder,
                   readonly: ""
                 }
               }),
@@ -108010,7 +108015,7 @@ var render = function() {
                 staticClass: "form-control file-value",
                 attrs: {
                   type: "text",
-                  placeholder: "Chargez votre Vidéo...(20 Mo max)",
+                  placeholder: _vm.videoFilePlaceholder,
                   readonly: ""
                 }
               }),
