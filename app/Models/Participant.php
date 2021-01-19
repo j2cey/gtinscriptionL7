@@ -53,14 +53,13 @@ class Participant extends BaseModel
             'nomgroupe' => ['required'],
             'email' => ['email','required'],
             'phone' => ['required'],
-            'fichierpieceidentite' => ['required'],
-            'fichiervideo' => ['required'],
             'reglementvalide' => ['required'],
         ];
     }
     public static function createRules() {
         return array_merge(self::defaultRules(), [
-
+            'fichierpieceidentite' => ['required','file','max:8192'],
+            'fichiervideo' => ['required','file','max:8192'],
         ]);
     }
     public static function updateRules($model) {
@@ -77,6 +76,8 @@ class Participant extends BaseModel
             'email.email' => 'Prière de Renseigner une adresse e-mail valide',
             'phone.required' => 'Prière de Renseigner votre Numéro de Phone',
             'fichierpieceidentite.required' => 'Prière de télécharger votre fichier identité',
+            'fichierpieceidentite.file' => 'Prière de télécharger votre fichier identité',
+            'fichierpieceidentite.max' => 'Prière de télécharger votre fichier identité',
             'fichiervideo.required' => 'Prière de télécharger votre vidéo',
             'reglementvalide.required' => 'Vous devez aprrouver le règlement !',
         ];

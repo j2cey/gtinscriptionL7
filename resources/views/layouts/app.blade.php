@@ -34,7 +34,7 @@
             <a class="topbar-brand" href="/">
                 <img class="logo-default" src="{{ asset('assets/img/Logo_Moov_Africa_Fond_Bleu.png') }}" alt="logo">
                 <img class="logo-inverse" src="{{ asset('assets/img/Logo_Moov_Africa_Fond_Blanc.png') }}" alt="logo">
-                Moov-Africa Gabon Telecom
+                {{ config('app.name', 'Montre-Ton-Moov') }}
             </a>
         </div>
 
