@@ -83,7 +83,7 @@
                     <h6>Sélection des Gagnants</h6>
                     <p class="text text-justify">
                         <i class="ti-check text-success mr-8"></i>
-                        <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé deux artistes professionels et de l’agence digitale.</span>
+                        <span class="fs-14">Analyse et pré-sélection des vidéos par un membre du jury composé de deux artistes professionels et de l’agence Digitale.</span>
                         <br>
                         <i class="ti-check text-success mr-8"></i>
                         <span class="fs-14">Mise en ligne sur la page Facebook des 10 meilleures vidéos présélectionnées suivant les critères d’originalité de la prestation et de la maîtrise du domaine.</span>
