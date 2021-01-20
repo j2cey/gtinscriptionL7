@@ -67,6 +67,16 @@
                 </div>
 
                 <button class="btn btn-primary btn-block" type="button" @click="createParticipant()" :disabled="!isValidCreateForm">Valider</button>
+                <div class="form-group">
+                    <p class="text-sm">
+                        <small>
+                            En cas de difficultés rencontrées lors de l’envoi des fichiers, écrivez -nous à
+                            <span class="text text-bold text-warning">
+                            montretonmoov.moov-moovafrica@gabontelecom.ga
+                            </span>
+                        </small>
+                    </p>
+                </div>
             </form>
         </div>
 

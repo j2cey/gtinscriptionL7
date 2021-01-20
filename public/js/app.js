@@ -2171,6 +2171,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Participant = function Participant(participant) {
   _classCallCheck(this, Participant);
 
@@ -108178,13 +108188,15 @@ var render = function() {
                 }
               },
               [_vm._v("Valider")]
-            )
+            ),
+            _vm._v(" "),
+            _vm._m(4)
           ]
         )
       ]
     ),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(5)
   ])
 }
 var staticRenderFns = [
@@ -108236,6 +108248,25 @@ var staticRenderFns = [
         },
         [_c("i", { staticClass: "fa fa-upload" })]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("p", { staticClass: "text-sm" }, [
+        _c("small", [
+          _vm._v(
+            "\n                        En cas de difficultés rencontrées lors de l’envoi des fichiers, écrivez -nous à\n                        "
+          ),
+          _c("span", { staticClass: "text text-bold text-warning" }, [
+            _vm._v(
+              "\n                        montretonmoov.moov-moovafrica@gabontelecom.ga\n                        "
+            )
+          ])
+        ])
+      ])
     ])
   },
   function() {
