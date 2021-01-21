@@ -108262,7 +108262,7 @@ var staticRenderFns = [
           ),
           _c("span", { staticClass: "text text-bold text-warning" }, [
             _vm._v(
-              "\n                        montretonmoov.moov-moovafrica@gabontelecom.ga\n                        "
+              "\n                        montretonmoov@moov-africa.ga\n                        "
             )
           ])
         ])

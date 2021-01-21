@@ -72,7 +72,7 @@
                         <small>
                             En cas de difficultés rencontrées lors de l’envoi des fichiers, écrivez -nous à
                             <span class="text text-bold text-warning">
-                            montretonmoov.moov-moovafrica@gabontelecom.ga
+                            montretonmoov@moov-africa.ga
                             </span>
                         </small>
                     </p>
