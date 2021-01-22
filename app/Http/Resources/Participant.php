@@ -23,6 +23,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @property string $complementinfos
  * @property string $statut_video_name
+ * @property string $videotelecharge
  */
 class Participant extends JsonResource
 {
@@ -46,9 +47,10 @@ class Participant extends JsonResource
             'fichiervideo_duree' => $this->fichiervideo_duree,
             'complementinfos' => $this->complementinfos,
             'statut_video_name' => $this->statut_video_name,
+            'videotelecharge' => $this->videotelecharge,
             'fichieridentite_url' => '/uploads/participants/fichiersidentite/' . $this->fichierpieceidentite,
             'edit_url' => route('participant.edit', $this->id),
-            'destroy_url' => '/uploads/participants/fichiersvideos/' . $this->fichiervideo,//route('participant.getvideo', $this->uuid),
+            'destroy_url' => route('participant.getvideo', $this->uuid),//'/uploads/participants/fichiersvideos/' . $this->fichiervideo,
         ];
     }
 }
