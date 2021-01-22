@@ -60,8 +60,16 @@ class Participant extends BaseModel implements Auditable
     }
     public static function createRules() {
         return array_merge(self::defaultRules(), [
-            'fichierpieceidentite' => ['required','file','max:'. Participant::getFileUploadMaxSize("ko")],
-            'fichiervideo' => ['required','file','max:' . Participant::getVideoUploadMaxSize("ko")],
+            'nom' => ['unique:participants'],
+            'nomgroupe' => ['unique:participants'],
+            'fichierpieceidentite' => [
+                'required','file','max:'. Participant::getFileUploadMaxSize("ko"),
+                'mimes:pdf,PDF,jpeg,png,bmp,gif,svg',
+            ],
+            'fichiervideo' => [
+                'required','file','max:' . Participant::getVideoUploadMaxSize("ko"),
+
+            ],
         ]);
     }
     public static function updateRules($model) {
@@ -73,13 +81,18 @@ class Participant extends BaseModel implements Auditable
     public static function messagesRules() {
         return [
             'nom.required' => 'Prière de Renseigner votre Nom',
+            'nom.unique' => 'Une participation est déjà enregistrée à ce Nom',
             'nomgroupe.required' => 'Prière de Renseigner le Nom du Groupe',
+            'nomgroupe.unique' => 'Une participation est déjà enregistrée à ce Nom de Groupe',
             'email.required' => 'Prière de Renseigner votre adresse e-mail',
             'email.email' => 'Prière de Renseigner une adresse e-mail valide',
             'phone.required' => 'Prière de Renseigner votre Numéro de Phone',
+
             'fichierpieceidentite.required' => 'Prière de télécharger votre fichier identité',
             'fichierpieceidentite.file' => 'Le fichier identité doit etre un fichier valide',
             'fichierpieceidentite.max' => 'La taille du fichier identité doit etre de ' . Participant::getFileUploadMaxSize("Mo") .' Mo max',
+            'fichierpieceidentite.mimes' => 'Le fichier identité doit etre au format PDF,jpeg,png,bmp,gif ou svg',
+
             'fichiervideo.required' => 'Prière de télécharger votre vidéo',
             'fichiervideo.file' => 'La vidéo doit etre un fichier valide',
             'fichiervideo.max' => 'La taille du fichier video doit etre de ' . Participant::getVideoUploadMaxSize("Mo") .' Mo max',

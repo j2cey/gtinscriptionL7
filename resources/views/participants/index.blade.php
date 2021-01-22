@@ -137,6 +137,7 @@
                                          :key="record.id" class="tw-rounded tw-overflow-hidden tw-shadow-lg">
                                         <img class="tw-w-full" src="assets/img/thumbnail-default.jpg" alt="Mountain">
                                         <div class="tw-px-6 tw-py-4">
+                                            <span class="badge badge-default">@{{ record.id }}</span>
                                             <div class="tw-font-bold tw-text-xl tw-mb-2">@{{ record.nomgroupe }}</div>
                                             <div class="tw-font-bold tw-text-xs tw-mb-2"><i class="fa fa-user"></i>
                                                 @{{ record.nom }}

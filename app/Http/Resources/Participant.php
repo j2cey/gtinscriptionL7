@@ -48,7 +48,7 @@ class Participant extends JsonResource
             'statut_video_name' => $this->statut_video_name,
             'fichieridentite_url' => '/uploads/participants/fichiersidentite/' . $this->fichierpieceidentite,
             'edit_url' => route('participant.edit', $this->id),
-            'destroy_url' => route('participant.getvideo', $this->uuid),
+            'destroy_url' => '/uploads/participants/fichiersvideos/' . $this->fichiervideo,//route('participant.getvideo', $this->uuid),
         ];
     }
 }
