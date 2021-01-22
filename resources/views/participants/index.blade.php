@@ -140,7 +140,7 @@
                                             <div class="tw-font-bold tw-text-xl tw-mb-2">
                                                 <small>
                                                     <span v-if="record.videotelecharge" class="badge badge-danger">@{{ record.id }}</span>
-                                                    <span v-else class="badge badge-success">@{{ record.id }}></span>
+                                                    <span v-else class="badge badge-success">@{{ record.id }}</span>
                                                 </small>
                                                 .
                                                 @{{ record.nomgroupe }}</div>
